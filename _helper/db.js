@@ -1,5 +1,5 @@
-const config = require('config.json');
-const mongoose = require('mongoose');
+const config = require('../myconfig.json');
+const mongoose = require('mongoose',{useCreateIndex: true,useNewUrlParser: true});
 mongoose.connect(process.env.MONGODB_URI || config.connectionString);
 mongoose.Promise = global.Promise;
 
