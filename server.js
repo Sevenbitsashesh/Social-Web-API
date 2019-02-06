@@ -1,22 +1,24 @@
+require('rootpath')();
 const express = require('express');
 const app = express();
-const path = require('path');
 const cors = require('cors');
+// const path = require('path');
 app.use(cors({ origin: true }));
-// require('rootpath')();
+
 const bodyParser = require('body-parser');
 const jwt = require('./_helper/jwt');
 const errorHandler = require('./_helper/error-handler');
-app.use(errorHandler);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(jwt());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
 app.use('/users', require('./users/user.controller'));
 
-app.post('/', on => {
-    console.log('welcome guest');
-})
+
+
+app.use(errorHandler);
+
 
 
 // start server

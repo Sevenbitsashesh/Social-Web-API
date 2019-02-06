@@ -1,8 +1,8 @@
 const config = require('../myconfig.json');
-const mongoose = require('mongoose',{useCreateIndex: true,useNewUrlParser: true});
-mongoose.connect(process.env.MONGODB_URI || config.connectionString);
+const mongoose = require('mongoose',{useCreateIndex: true});
+mongoose.connect(process.env.MONGODB_URI || config.connectionString,{useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 
 module.exports = {
-    User: require('../users/user.model')
+    users: require('../users/user.model')
 };

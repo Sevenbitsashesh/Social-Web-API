@@ -2,11 +2,31 @@ const config = require('../myconfig.json');
 const jwt_token = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../_helper/db');
-const User = db.User;
+const users = db.users;
 
 module.exports = {
-    authenticate
+    authenticate,
+    getAll
 };
-async function authenticate({user_name}) {
-    console.log(user_name);
+async  function authenticate({user_name, password}) {
+    
+    const user = await users.findOne({ user_name, password }).exec();  
+    console.log(user.hash);
+    // return {user_name,password};
+    if (user && bcrypt.compareSync(password, user.hash)) {
+        console.log(user.hash);
+        const { user_name } = user.toObject();
+        // const token = jwt.sign({ sub: user.id }, config.secret);
+        // const token = 'token';
+        return {
+                user_name,
+                token
+        };
+    }    
+}
+async function getById(id) {
+    return await users.findById(id).select('-hash');
+}
+async function getAll() {
+    return await users.find().select('-hash');
 }
