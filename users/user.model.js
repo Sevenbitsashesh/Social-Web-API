@@ -19,8 +19,14 @@ const userSchema = new Schema({
 });
 
 // userSchema.set('toJSON', { virtuals: true });
-userSchema.set('collection','users');
+// userSchema.set('collection','users');
 
-module.exports = mongoose.model('users', userSchema,'users');
 
+var u = mongoose.model('users', userSchema,'users');
+function getAuth(uname) {
+    u.findOne({user_name: 'Ashesh40'}).then(u => {
+        console.log(u);
+    })
+}
+module.exports = u;
 // mongoose.model('User', userSchema,'users');
