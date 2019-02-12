@@ -6,6 +6,7 @@ module.exports = jwt;
 
 
 function jwt() {
+    console.log('checking');
     const secret = config.secret;    
     return expressJwt({ secret, isRevoked }).unless({
         path: [

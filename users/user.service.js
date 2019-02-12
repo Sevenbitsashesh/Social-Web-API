@@ -6,24 +6,20 @@ const users = db.users;
 
 module.exports = {
     authenticate,
-    getAll
+    getAll,
+    getById
 };
 async  function authenticate({user_name, password}) {
-    
-    const user = await users.findOne({ user_name });
-    // user[0].then(function (doc) {console.log(doc)});
-    
-    
-    if (user && bcrypt.compareSync(password, user.hash)) {
-        console.log(user.hash);
-        const { user_name } = user.toObject();
-        const token = jwt.sign({ sub: user.id }, config.secret);
-        // const token = 'token';
-        return {
-                user_name,
-                token
-        };
+
+    const user = await users.findOne({user_name});
+    if (user && bcrypt.compareSync(password, user.hash)) {  
+        
+       const {hash, ...userss} = user.toObject();
+       console.log({hash, ...userss});
+       const token = jwt_token.sign({sub: user.id},config.secret);
+               return  {...userss, token };
     }    
+    
 }
 
 async function getById(id) {

@@ -8,7 +8,7 @@ const userSchema = new Schema({
     // lastName: { type: String, required: true },
     // createdDate: { type: Date, default: Date.now },
     // email: {type: String, required: true},
-    password: {type: String, required: true},
+    
     // gender: {type: String, required: true},
     // mobile: {type: Number, required: false},
     // profile_pic: {type: String,required: false},
@@ -18,15 +18,9 @@ const userSchema = new Schema({
     // status: {type: Boolean, required: false}
 });
 
-// userSchema.set('toJSON', { virtuals: true });
+userSchema.set('toJSON', { virtuals: true });
 // userSchema.set('collection','users');
 
 
-var u = mongoose.model('users', userSchema,'users');
-function getAuth(uname) {
-    u.findOne({user_name: 'Ashesh40'}).then(u => {
-        console.log(u);
-    })
-}
-module.exports = u;
+module.exports = mongoose.model('users', userSchema,'users');
 // mongoose.model('User', userSchema,'users');
