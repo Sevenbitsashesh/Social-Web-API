@@ -9,9 +9,9 @@ module.exports = {
     getAll,
     getById
 };
-async  function authenticate({user_name, password}) {
+async  function authenticate({email, password}) {
 
-    const user = await users.findOne({user_name});
+    const user = await users.findOne({email});
     if (user && bcrypt.compareSync(password, user.hash)) {  
         
        const {hash, ...userss} = user.toObject();
@@ -21,7 +21,9 @@ async  function authenticate({user_name, password}) {
     }    
     
 }
+async function createUser({user_name, password, cpassword}) {
 
+}
 async function getById(id) {
     return await users.findById(id).select('-hash');
 }
