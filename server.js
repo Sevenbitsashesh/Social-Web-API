@@ -15,16 +15,11 @@ app.use(bodyParser.json());
 app.use(jwt());
 
 app.use(session({secret: 'work-hard', resave: true, saveUninitialized: true}));
-app.get('/',function checkSession(req,res,next) {
-    // req.session.email = "pashesh@gmail.com";
-    if(req.session.email) {
-        // res.redirect('/users');
-    }
-    else {
-        // res.redirect('/users/authenticate');
-    }
+app.get('/',function checkSession(req,res,next) {    
+    
+    // res.send
 });
-app.use('/users', require('./users/user.controller'));
+app.use('/users', require('./controllers/user.controller'));
 
 
 
