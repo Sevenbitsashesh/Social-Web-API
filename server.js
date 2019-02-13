@@ -1,6 +1,7 @@
 require('rootpath')();
 const express = require('express');
 const app = express();
+const session = require('express-session');
 const cors = require('cors');
 // const path = require('path');
 app.use(cors({ origin: true }));
@@ -13,14 +14,25 @@ app.use(bodyParser.json());
 
 app.use(jwt());
 
+app.use(session({secret: 'work-hard', resave: true, saveUninitialized: true}));
+app.get('/',function checkSession(req,res,next) {
+    // req.session.email = "pashesh@gmail.com";
+    if(req.session.email) {
+        // res.redirect('/users');
+    }
+    else {
+        // res.redirect('/users/authenticate');
+    }
+});
 app.use('/users', require('./users/user.controller'));
 
 
 
+
+
+
+
 app.use(errorHandler);
-
-
-
 // start server
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
 const server = app.listen(port, function () {

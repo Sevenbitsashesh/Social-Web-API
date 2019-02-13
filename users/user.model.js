@@ -22,5 +22,6 @@ userSchema.set('toJSON', { virtuals: true });
 // userSchema.set('collection','users');
 
 
-module.exports = mongoose.model('users', userSchema,'users');
+var User = mongoose.model('User', userSchema,'users')
+module.exports = User;
 // mongoose.model('User', userSchema,'users');
