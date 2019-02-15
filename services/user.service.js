@@ -33,9 +33,9 @@ async function register({user_name, email, password, fname, lname}) {
     const hash = bcrypt.hashSync(password, 10);
     
     const u = new User({user_name, email, hash, fname, lname});
-    
-   
-    return u.save();
-   
+    const user = u.save();
+    const {_id, ...userss} = u.toObject();
+    const token = u.generateJwt();
+    return {...userss, token};
     
 }
