@@ -17,14 +17,9 @@ app.use(jwt());
 app.use(session({secret: 'work-hard', resave: true, saveUninitialized: true}));
 app.get('/',function checkSession(req,res,next) {    
     
-    // res.send
+    console.log(Date.now());
 });
 app.use('/users', require('./controllers/user.controller'));
-
-
-
-
-
 
 
 app.use(errorHandler);
