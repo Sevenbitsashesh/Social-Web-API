@@ -29,13 +29,23 @@ async function getById(id) {
 async function getAll() {
     return await User.find().select('-hash');
 }
-async function register({user_name, email, password, fname, lname}) {
-    const hash = bcrypt.hashSync(password, 10);
+async function register({user_name, email, password ,fname, lname},res) {
     
-    const u = new User({user_name, email, hash, fname, lname});
-    const user = u.save();
-    const {_id, ...userss} = u.toObject();
-    const token = u.generateJwt();
-    return {...userss, token};
+
+        const hash = bcrypt.hashSync(password, 10);
+        
+        const u = new User({user_name, email, hash, fname, lname});
+        u.save((err) => {
+            if(!err) {
+             res.json(u);
+            }
+            else {
+                res.send("Error Registering user");
+            }
+        });
+    
+    
+    
+    
     
 }
