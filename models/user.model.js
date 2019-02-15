@@ -3,10 +3,11 @@ const Schema = mongoose.Schema;
 const jwt_token = require('jsonwebtoken');
 const config = require('../myconfig.json');
 const userSchema = new Schema({
+    user_name: {type: String, unique: true, required: true},
     email: { type: String, unique: true, required: true },
     hash: { type: String, required: true },
-    // firstName: { type: String, required: true },
-    // lastName: { type: String, required: true },
+    fname: { type: String, required: true },
+    lname: { type: String, required: true },
     // createdDate: { type: Date, default: Date.now },
     // email: {type: String, required: true},
     
@@ -28,6 +29,7 @@ userSchema.methods.generateJwt = function() {
   return jwt_token.sign({id: this._id, email: this.email, exp: parseInt(expiry.getTime() / 1000),
   },config.secret);
 }
+
 
 var User = mongoose.model('User', userSchema,'users');
 module.exports = User;

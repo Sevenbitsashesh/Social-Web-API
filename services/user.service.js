@@ -7,7 +7,8 @@ const User = db.users;
 module.exports = {
     authenticate,
     getAll,
-    getById
+    getById,
+    register
 };
 async  function authenticate({email, password}) {
 
@@ -15,7 +16,7 @@ async  function authenticate({email, password}) {
     if (user && bcrypt.compareSync(password, user.hash)) {  
         
        const {hash, _id, ...userss} = user.toObject();
-       const token = user.generateJwt();
+       const     token = user.generateJwt();
        
                return  {...userss, token };
     }    
@@ -27,4 +28,14 @@ async function getById(id) {
 }
 async function getAll() {
     return await User.find().select('-hash');
+}
+async function register({user_name, email, password, fname, lname}) {
+    const hash = bcrypt.hashSync(password, 10);
+    
+    const u = new User({user_name, email, hash, fname, lname});
+    
+   
+    return u.save();
+   
+    
 }
