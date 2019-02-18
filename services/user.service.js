@@ -32,11 +32,15 @@ async function getAll() {
 async function register({user_name, email, password ,fname, lname},res) {
     
 
-        const hash = bcrypt.hashSync(password, 10);
+        const hash = bcrypt.hashSync(password, 10, (err) => {
+            console.log(err);
+        })
         
         const u = new User({user_name, email, hash, fname, lname});
         u.save((err) => {
+            
             if(!err) {
+                console.log(u);
              res.json(u);
             }
             else {

@@ -19,7 +19,7 @@ function getAll(req,res, next) {
     userService.getAll().then(users => res.json(users)).catch(err => next(err));
 }
 function register(req, res, next) {
-    userService.register(req.body,res).then(user => console);
+    userService.register(req.body,res);
     // .then(user => user ? res.json(user) : res.status(401).json({message: "Error Registering User"})).catch((err) => {
         
     // res.json(err);

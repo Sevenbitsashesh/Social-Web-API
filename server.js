@@ -20,7 +20,7 @@ app.get('/',function checkSession(req,res,next) {
     console.log(Date.now());
 });
 app.use('/users', require('./controllers/user.controller'));
-
+app.use('/posts', require('./controllers/post.controller'));
 
 app.use(errorHandler);
 // start server
