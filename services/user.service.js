@@ -8,7 +8,8 @@ module.exports = {
     authenticate,
     getAll,
     getById,
-    register
+    register,
+    getUserInfo
 };
 async  function authenticate({email, password}) {
 
@@ -47,9 +48,7 @@ async function register({user_name, email, password ,fname, lname},res) {
                 res.send("Error Registering user");
             }
         });
-    
-    
-    
-    
-    
+}
+async function getUserInfo(id) {
+
 }

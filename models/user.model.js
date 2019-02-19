@@ -29,7 +29,9 @@ userSchema.methods.generateJwt = function() {
   return jwt_token.sign({id: this._id, email: this.email, exp: parseInt(expiry.getTime() / 1000),
   },config.secret);
 }
+userSchema.methods.verifytoken = function() {
 
+}
 
 var User = mongoose.model('User', userSchema,'users');
 module.exports = User;

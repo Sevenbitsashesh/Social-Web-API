@@ -5,7 +5,7 @@ const   userService = require('../services/user.service');
 router.post('/authenticate',authenticate);
 router.get('/', getAll);
 router.post('/register', register);
-
+router.post('/getUserInfoById', getUserInfoById);
 
 
 module.exports = router;
@@ -24,7 +24,8 @@ function register(req, res, next) {
         
     // res.json(err);
     // })
-
-    
+}
+function getUserInfoById(req, res,next) {
+    console.log('getuserinfo')
 }
 
