@@ -26,6 +26,9 @@ function register(req, res, next) {
     // })
 }
 function getUserInfoById(req, res,next) {
-    console.log('getuserinfo')
+    
+   userService.getUserInfo(req.body).then(uinfo => { res.json(uinfo) }).catch(err => next(err));
+    
+    
 }
 

@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const db = require('../_helper/db');
 const User = db.users;
-
+const Userinfo = db.userinfo;
 
 
 module.exports = {
@@ -25,7 +25,9 @@ async  function authenticate({email, password}) {
 }
 
 async function getById(id) {
-    return await User.findById(id).select('-hash');
+    console.log(id);
+    const user = await User.findById(id.publicid).select('-hash');
+    return user;
 }
 async function getAll() {
     return await User.find().select('-hash');
@@ -49,6 +51,8 @@ async function register({user_name, email, password ,fname, lname},res) {
             }
         });
 }
-async function getUserInfo(id) {
-
+async function getUserInfo(body) {
+    console.log(body);
+    const uinfo = await Userinfo.findOne(body.userid).select('-hash');
+    return uinfo;
 }

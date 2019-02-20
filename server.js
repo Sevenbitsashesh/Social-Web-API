@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 app.use(jwt());
 
-app.use(session({secret: 'work-hard', resave: true, saveUninitialized: true}));
+// app.use(session({secret: 'work-hard', resave: true, saveUninitialized: true}));
 app.get('/',function checkSession(req,res,next) {    
     
     console.log(Date.now());
