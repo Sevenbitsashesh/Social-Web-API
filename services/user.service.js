@@ -25,7 +25,7 @@ async  function authenticate({email, password}) {
 }
 
 async function getById(id) {
-    console.log(id);
+    // console.log(id);
     const user = await User.findById(id.publicid).select('-hash');
     return user;
 }
@@ -43,7 +43,7 @@ async function register({user_name, email, password ,fname, lname},res) {
         u.save((err) => {
             
             if(!err) {
-                console.log(u);
+                // console.log(u);
              res.json(u);
             }
             else {
@@ -52,7 +52,8 @@ async function register({user_name, email, password ,fname, lname},res) {
         });
 }
 async function getUserInfo(body) {
-    console.log(body);
+    
     const uinfo = await Userinfo.findOne(body.userid).select('-hash');
+    
     return uinfo;
 }

@@ -15,10 +15,10 @@ app.use(bodyParser.json());
 app.use(jwt());
 
 // app.use(session({secret: 'work-hard', resave: true, saveUninitialized: true}));
-app.get('/',function checkSession(req,res,next) {    
+// app.get('/',function checkSession(req,res,next) {    
     
-    console.log(Date.now());
-});
+//     // console.log(Date.now());
+// });
 app.use('/users', require('./controllers/user.controller'));
 app.use('/tweets', require('./controllers/tweet.controller'));
 
