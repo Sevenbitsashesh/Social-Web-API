@@ -28,3 +28,6 @@ async function isRevoked(req, payload, done) {
 
     done();
 };
+async function verify(token) {
+    
+}
