@@ -9,7 +9,8 @@ module.exports = {
     getAll,
     getById,
     register,
-    getUserInfo
+    getUserInfo,
+    getUserByUid
 };
 async  function authenticate({email, password}) {
 
@@ -62,8 +63,11 @@ async function register({user_name, email, password ,fname, lname},res) {
         });
 }
 async function getUserInfo(body) {
-    
     const uinfo = await Userinfo.findOne({"userid": body.userid});
     
     return uinfo;
+}
+async function getUserByUid(body) {
+    const u = await User.find({user_name: body.userid});    
+    return u;
 }
