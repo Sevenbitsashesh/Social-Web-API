@@ -22,7 +22,6 @@ async  function authenticate({email, password}) {
        
                return  {...userss, token };
     }    
-    
 }
 
 async function getById(id) {
@@ -33,13 +32,14 @@ async function getById(id) {
 async function getAll() {
     return await User.find().select('-hash');
 }
-async function register({user_name, email, password ,fname, lname},res) {
+async function register({user_name, email, password,cpassword ,fname, lname},res) {
     
-
+    console.log({user_name, email, password ,cpassword,fname, lname});
         const hash = bcrypt.hashSync(password, 10, (err) => {
             console.log(err);
-        });
+        })
         
+        console.log(hash);
         const u = new User({user_name, email, hash, fname, lname});
         
         u.save((err) => {
@@ -47,6 +47,7 @@ async function register({user_name, email, password ,fname, lname},res) {
             if(!err) {
                 currentUser.save((error => {
                     if(!error) {
+                        console.log('New User Added!'+ user_name);
                         res.json(u);
                     }
                     else {
@@ -54,8 +55,6 @@ async function register({user_name, email, password ,fname, lname},res) {
                     }
                     
                 }))
-                
-             
             }
             else {
                 res.send("Error Registering user");
