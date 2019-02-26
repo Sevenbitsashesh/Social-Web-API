@@ -68,6 +68,7 @@ async function getUserInfo(body) {
     return uinfo;
 }
 async function getUserByUid(body) {
+    
     const u = await User.find({user_name: body.userid});    
     return u;
 }

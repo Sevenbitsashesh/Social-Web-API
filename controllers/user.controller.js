@@ -31,6 +31,7 @@ function getUserInfoById(req, res,next) {
    userService.getUserInfo(req.body).then(uinfo => { res.json(uinfo) }).catch(err => next(err));    
 }
 function getUserById(req, res, next) {
-    userService.getUserByUid(req.body).then(user => user.length? res.json(user) : res.status(401).json({message: "Not found"})) ;
+    console.log(req.body.userid);
+    userService.getUserByUid(req.body).then(user => user.length? res.json(user) : res.json({message: "Not found"}));
 }
 
