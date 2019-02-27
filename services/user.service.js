@@ -10,7 +10,8 @@ module.exports = {
     getById,
     register,
     getUserInfo,
-    getUserByUid
+    getUserByUid,
+    getUserByEmail
 };
 async  function authenticate({email, password}) {
 
@@ -38,17 +39,16 @@ async function register({user_name, email, password,cpassword ,fname, lname},res
         const hash = bcrypt.hashSync(password, 10, (err) => {
             console.log(err);
         })
-        
         console.log(hash);
-        const u = new User({user_name, email, hash, fname, lname});
-        
+        const u = new User({user_name, email, hash, fname, lname});                        
         u.save((err) => {
             const currentUser = new Userinfo({"userid": u._id,"display_name": user_name,"website": "", "profile_pic": "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt=media&token=55b2f2e5-aec4-4819-9a10-ae9315a4cb1d", "bio": "Hi! I am using SWA.", "interests": "", "cover_image": "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profile%2F9aaded4a-e6ac-407d-9523.jpg?alt=media&token=4ce6ecdc-bd12-45b5-b610-851c4f00e928", "mobile": "", "dob": "", "address": ""});    
             if(!err) {
                 currentUser.save((error => {
                     if(!error) {
-                        console.log('New User Added!'+ user_name);
-                        res.json(u);
+                        // console.log('New User Added!'+ user_name);
+                        res.json(u, {created: true});
+                        console.log('json'+u, {created: true})
                     }
                     else {
                         console.log(error);
@@ -69,5 +69,11 @@ async function getUserInfo(body) {
 async function getUserByUid(body) {
     
     const u = await User.find({user_name: body.userid});    
+    return u;
+}
+async function getUserByEmail({email}) {
+    
+    const u = await User.find({email: email});   
+    console.log(u);
     return u;
 }

@@ -19,11 +19,26 @@ function getAll(req,res, next) {
     userService.getAll().then(users => res.json(users)).catch(err => next(err));
 }
 function register(req, res, next) {
-    userService.register(req.body,res);
-    // .then(user => user ? res.json(user) : res.status(401).json({message: "Error Registering User"})).catch((err) => {
+    userService.getUserByEmail(req.body).then(u => {
+        // console.log(u);
+        if(u.length === 0) {
+            userService.register(req.body,res);
+        }
+        else if(u.length > 0) {
+            res.json({accountAlready: true});
+        }
+        else {
+            res.status(401).json({message: "Try again later"});
+        }
         
-    // res.json(err);
-    // })
+        // .then(user => user ? res.json(user) : res.status(401).json({message: "Error Registering User"})).catch((err) => {
+            
+        // res.json(err);
+        // })
+    }
+
+    )
+    
 }
 function getUserInfoById(req, res,next) {
     console.log(req.body);
