@@ -25,10 +25,10 @@ function register(req, res, next) {
             userService.register(req.body,res);
         }
         else if(u.length > 0) {
-            res.json({accountAlready: true});
+            res.status(200).json({error: "Email already have an account!"});
         }
         else {
-            res.status(401).json({message: "Try again later"});
+            res.status(200).json({error: "Try again later"});
         }
         
         // .then(user => user ? res.json(user) : res.status(401).json({message: "Error Registering User"})).catch((err) => {

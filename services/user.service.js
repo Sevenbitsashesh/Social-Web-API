@@ -42,13 +42,13 @@ async function register({user_name, email, password,cpassword ,fname, lname},res
         console.log(hash);
         const u = new User({user_name, email, hash, fname, lname});                        
         u.save((err) => {
-            const currentUser = new Userinfo({"userid": u._id,"display_name": user_name,"website": "", "profile_pic": "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt=media&token=55b2f2e5-aec4-4819-9a10-ae9315a4cb1d", "bio": "Hi! I am using SWA.", "interests": "", "cover_image": "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profile%2F9aaded4a-e6ac-407d-9523.jpg?alt=media&token=4ce6ecdc-bd12-45b5-b610-851c4f00e928", "mobile": "", "dob": "", "address": ""});    
+            const currentUser = new Userinfo({"userid": u._id,"display_name": user_name,"website": "", "profile_pic": "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt=media&token=55b2f2e5-aec4-4819-9a10-ae9315a4cb1d", "bio": "Hi! I am using SWA.", "interests": "", "cover_image": "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profile%2F9aaded4a-e6ac-407d-9523.jpg?alt=media&token=4ce6ecdc-bd12-45b5-b610-851c4f00e928", "mobile": "", "dob": "", "address": "", "isVerified": false});    
             if(!err) {
                 currentUser.save((error => {
                     if(!error) {
                         // console.log('New User Added!'+ user_name);
-                        res.json(u, {created: true});
-                        console.log('json'+u, {created: true})
+                        res.json(u);
+                        
                     }
                     else {
                         console.log(error);
@@ -57,7 +57,7 @@ async function register({user_name, email, password,cpassword ,fname, lname},res
                 }))
             }
             else {
-                res.send("Error Registering user");
+                res.status(200).json({ error: "Error Registering user"});
             }
         });
 }
