@@ -19,12 +19,10 @@ async  function authenticate({email, password}) {
     if (user && bcrypt.compareSync(password, user.hash)) {  
         
        const {hash, _id, ...userss} = user.toObject();
-       const     token = user.generateJwt();
-       
+       const     token = user.generateJwt();      
                return  {...userss, token };
     }    
 }
-
 async function getById(id) {
     // console.log(id);
     const user = await User.findById(id.userid).select('-hash');
