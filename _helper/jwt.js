@@ -14,7 +14,8 @@ function jwt() {
             '/users/authenticate',
             '/users/register',
             '/users/getuserbyuid',
-            '/users/saveuserinfo'
+            '/users/saveuserinfo',
+            '/users/getuserinfobyid'
         ]
     });
 }
