@@ -11,7 +11,8 @@ module.exports = {
     register,
     getUserInfo,
     getUserByUid,
-    getUserByEmail
+    getUserByEmail,
+    addUserInfo
 };
 async  function authenticate({email, password}) {
 
@@ -74,4 +75,13 @@ async function getUserByEmail({email}) {
     const u = await User.find({email: email});   
     console.log(u);
     return u;
+}
+async function addUserInfo(model) {
+    console.log(model);
+    // const currentUser = new Userinfo({"userid": model.userid,"display_name": model.user_name,"website": model.website, "profile_pic": model.profile_pic, "bio": "Hi! I am using SWA.", "interests": model.interests, "cover_image": model.cover_image, "mobile": model.mobile, "dob": model.dob, "address": model.address, "isVerified": false});    
+    // currentUser.save((err) => {
+    //     if(err) {
+    //         console.log('Error registering user');            
+    //     }
+    // })
 }

@@ -7,7 +7,7 @@ router.get('/', getAll);
 router.post('/register', register);
 router.post('/getuserinfobyid', getUserInfoById);
 router.post('/getuserbyuid', getUserById);
-
+router.post('/saveuserinfo', addUserInfo);
 module.exports = router;
 
 function authenticate(req, res, next) {    
@@ -49,4 +49,7 @@ function getUserById(req, res, next) {
     console.log(req.body.userid);
     userService.getUserByUid(req.body).then(user => user.length? res.json(user) : res.json({message: "Not found"}));
 }
-
+function addUserInfo(req,res, next) {
+    console.log(req.body);
+    userService.addUserInfo().then(user => user ?  res.json(user) : res.json({message: "Error registering users info"}));
+}
