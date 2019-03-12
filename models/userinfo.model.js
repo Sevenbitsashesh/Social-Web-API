@@ -4,7 +4,7 @@ const jwt_token = require('jsonwebtoken');
 const config = require('../myconfig.json');
 const userInfo = new Schema({
     userid: {type: String, unique: true, required: true},
-    display_name: { type: String, required: true },
+    user_name: { type: String, required: true },
     website: { type: String, required: false },
     profile_pic: { type: String, required: false },
     bio: { type: String, required: false },
