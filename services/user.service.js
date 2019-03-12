@@ -61,8 +61,8 @@ async function register({user_name, email, password,cpassword ,fname, lname},res
         });
 }
 async function getUserInfo(body) {
-    
-    const uinfo = await Userinfo.find({"userid": body.userid});
+    console.log(body.userid);
+    const uinfo = await Userinfo.find({userid: body.userid});
     
     return uinfo;
 }
