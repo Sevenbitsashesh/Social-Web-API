@@ -5,9 +5,10 @@ const config = require('../myconfig.json');
 const userSchema = new Schema({
     user_name: {type: String, unique: true, required: true},
     email: { type: String, unique: true, required: true },
-    hash: { type: String, required: true },
+    hash: { type: String, required: false },
     fname: { type: String, required: true },
     lname: { type: String, required: true },
+    
     // createdDate: { type: Date, default: Date.now },
     // email: {type: String, required: true},
     
