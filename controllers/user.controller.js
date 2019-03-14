@@ -52,7 +52,7 @@ function socialAuthenticate(req, res, next) {
         // console.log(user);
         userService.socialAuthenticate(user).then(socialuser => { 
             
-            console.log(socialuser);
+            // console.log(socialuser);
             res.json(socialuser);
                     
         }).catch(err => {
