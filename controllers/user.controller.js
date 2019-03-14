@@ -37,7 +37,7 @@ function register(req, res, next) {
 function getUserInfoById(req, res,next) {
     // console.log(req.body);
     
-   userService.getUserInfo(req.body).then(uinfo =>   uinfo.length !== 0 ? res.json(uinfo[0]) : res.json({message: "Not found"})).catch(err => next(err));    
+  return userService.getUserInfo(req.body).then(uinfo =>   uinfo.length !== 0 ? res.json(uinfo[0]) : res.json({message: "Not found"})).catch(err => next(err));    
 }
 function getUserById(req, res, next) {
     // console.log(req.body.userid);
