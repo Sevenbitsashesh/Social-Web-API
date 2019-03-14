@@ -2,17 +2,19 @@ const bcrypt = require('bcryptjs');
 const db = require('../_helper/db');
 const User = db.users;
 const Userinfo = db.userinfo;
-
+const SocialUser = db.socialUser;
 
 module.exports = {
     authenticate,
+    socialAuthenticate,
     getAll,
     getById,
     register,
     getUserInfo,
     getUserByUid,
     getUserByEmail,
-    addUserInfo
+    addUserInfo,
+    getSocialById
 };
 async  function authenticate({email, password}) {
 
@@ -60,13 +62,10 @@ async function register({user_name, email, password,cpassword ,fname, lname, soc
             }
         });
 }
-async function authenticateSocial(body) {
-    console.log(body);
-    
-}
+
 async function getUserInfo(body) {
-    console.log(body);
-    const uinfo = await Userinfo.find({userid: body.userid});
+    // console.log(body);
+    const uinfo = await Userinfo.findOne({userid: body.userid});
     
     return uinfo;
 }
@@ -89,4 +88,26 @@ async function addUserInfo(model) {
     //         console.log('Error registering user');            
     //     }
     // })
+}
+async function getSocialById(user) {
+    
+   if(user) {
+       const socialUser = await SocialUser.findOne({socialUserId: user.socialUserId});
+       return socialUser;
+   } 
+   return {error: "Could not find user!"};
+    
+}
+async function socialAuthenticate(social) {
+    // console.log(social);
+    
+
+    if(social) {
+        const user = await SocialUser.findOne({socialUserId: social.socialUserId});
+        const userToken = user.generateJwt();
+        // const socialUser = user.toObject();
+        return {user,userToken};
+    } 
+        
+        // return {error: "Could not find user!"};
 }

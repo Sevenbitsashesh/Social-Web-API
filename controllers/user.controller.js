@@ -3,6 +3,7 @@ const session = require('express-session');
 const router = express.Router();
 const   userService = require('../services/user.service');
 router.post('/authenticate',authenticate);
+router.post('/socialauthenticate',socialAuthenticate);
 router.get('/', getAll);
 router.post('/register', register);
 router.post('/getuserinfobyid', getUserInfoById);
@@ -30,26 +31,34 @@ function register(req, res, next) {
         else {
             res.status(200).json({error: "Try again later"});
         }
-        
-        // .then(user => user ? res.json(user) : res.status(401).json({message: "Error Registering User"})).catch((err) => {
-            
-        // res.json(err);
-        // })
     }
-
-    )
-    
+    )    
 }
 function getUserInfoById(req, res,next) {
-    console.log(req.body);
+    // console.log(req.body);
     
    userService.getUserInfo(req.body).then(uinfo =>   uinfo.length !== 0 ? res.json(uinfo[0]) : res.json({message: "Not found"})).catch(err => next(err));    
 }
 function getUserById(req, res, next) {
-    console.log(req.body.userid);
+    // console.log(req.body.userid);
     userService.getUserByUid(req.body).then(user => user.length? res.json(user) : res.json({message: "Not found"}));
 }
 function addUserInfo(req,res, next) {
     console.log(req.body);
     userService.addUserInfo().then(user => user ?  res.json(user) : res.json({message: "Error registering users info"}));
+}
+function socialAuthenticate(req, res, next) {    
+    userService.getUserInfo(req.body).then(user => {
+        // console.log(user);
+        userService.socialAuthenticate(user).then(socialuser => { 
+            
+            console.log(socialuser);
+            res.json(socialuser);
+                    
+        }).catch(err => {
+            console.log('error'+err);
+            res.send({error: err});
+        })
+        
+    });
 }
