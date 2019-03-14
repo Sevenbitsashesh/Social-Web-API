@@ -104,9 +104,9 @@ async function socialAuthenticate(social) {
 
     if(social) {
         const user = await SocialUser.findOne({socialUserId: social.socialUserId});
-        const userToken = user.generateJwt();
+        const token = user.generateJwt();
         // const socialUser = user.toObject();
-        return {user,userToken};
+        return {user,token};
     } 
         
         // return {error: "Could not find user!"};
