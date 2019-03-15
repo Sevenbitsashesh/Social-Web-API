@@ -57,7 +57,7 @@ function socialAuthenticate(req, res, next) {
                     
         }).catch(err => {
             console.log('error'+err);
-            res.send({error: err});
+        next(err);
         })
         
     });
