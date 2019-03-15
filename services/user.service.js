@@ -65,12 +65,11 @@ async function register({user_name, email, password,cpassword ,fname, lname, soc
 
 async function getUserInfo(body) {
     console.log('body',body);
-    const uinfo = await Userinfo.findOne({userid: body.userID});
+    const uinfo = await Userinfo.findOne({userid: body.userid});
     
     return uinfo;
 }
 async function getUserByUid(body) {
-    
     const u = await User.find({user_name: body.userid});    
     return u;
 }
