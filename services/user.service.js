@@ -99,7 +99,7 @@ async function getSocialById(user) {
     
 }
 async function socialAuthenticate(social) {
-    console.log(social);
+    console.log('social',social);
     
 
     if(social) {
