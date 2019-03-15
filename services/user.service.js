@@ -65,7 +65,7 @@ async function register({user_name, email, password,cpassword ,fname, lname, soc
 
 async function getUserInfo(body) {
     console.log(body);
-    const uinfo = await Userinfo.findOne({userid: body.userID});
+    const uinfo = await Userinfo.findOne({userid: body.id});
     
     return uinfo;
 }
@@ -103,7 +103,7 @@ async function socialAuthenticate(social) {
     
 
     if(social) {
-        const user = await SocialUser.find({_id: social.socialUserId});
+        const user = await SocialUser.findOne({id: social.socialUserId});
         
         const token = user.generateJwt();
         user.token = token;        
