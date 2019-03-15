@@ -49,7 +49,7 @@ function addUserInfo(req,res, next) {
 }
 function socialAuthenticate(req, res, next) {    
     userService.getUserInfo(req.body).then(user => {
-        
+        // console.log(user);
         userService.socialAuthenticate(user).then(socialuser => { 
             
             // console.log(socialuser);
