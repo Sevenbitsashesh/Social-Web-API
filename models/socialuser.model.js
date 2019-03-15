@@ -16,11 +16,11 @@ const socialUserSchema = new Schema({
 
 socialUserSchema.set('toJSON', { virtuals: true });
 
-socialUserSchema.methods.generateJwt = function() {
+socialUserSchema.methods.generateJwt = function(data) {
     
     var expiry = new Date();
   expiry.setDate(expiry.getDate() + 7);
-  return jwt_token.sign({id: this._id, email: this.email, exp: parseInt(expiry.getTime() / 1000),
+  return jwt_token.sign({id: data.userid, email: this.email, exp: parseInt(expiry.getTime() / 1000),
   },config.secret);
 }
 

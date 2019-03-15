@@ -104,7 +104,7 @@ async function socialAuthenticate(social) {
     if(social) {
         const user = await SocialUser.findOne({id: social.socialUserId});
         
-        const token = user.generateJwt();
+        const token = user.generateJwt(social);
         user.token = token;        
         return user.toObject();
     } 
