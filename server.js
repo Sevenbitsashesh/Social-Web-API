@@ -25,11 +25,12 @@ app.use('/users', require('./controllers/user.controller'));
 app.use('/tweets', require('./controllers/tweet.controller'));
 
 
-app.use(function (err, req, res, next) {
+app.use(errorHandler);
+// app.use(function (err, req, res, next) {
     
-    console.error(err.stack)
-    res.status(500).send('Something broke!')
-  });
+//     console.error(err.stack)
+//     res.status(500).send('Something broke!')
+//   });
 // start server
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
 const server = app.listen(port, function () {
