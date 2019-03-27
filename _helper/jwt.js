@@ -19,7 +19,8 @@ function jwt() {
             '/users/getuserbyuid',
             '/users/saveuserinfo',
             '/users/getuserinfobyid',
-            '/users/socialauthenticate'
+            '/users/socialauthenticate',
+            '/users/registerSocial'
         ]
     });
 }

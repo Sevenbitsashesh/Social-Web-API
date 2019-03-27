@@ -9,6 +9,7 @@ router.post('/register', register);
 router.post('/getuserinfobyid', getUserInfoById);
 router.post('/getuserbyuid', getUserById);
 router.post('/saveuserinfo', addUserInfo);
+router.post('/registersocial',registerSocial);
 module.exports = router;
 
 function authenticate(req, res, next) {    
@@ -31,8 +32,20 @@ function register(req, res, next) {
         else {
             res.status(200).json({error: "Try again later"});
         }
-    }
-    )    
+    })    
+}
+function registerSocial(req,res,next) {
+    userService.getSocialByEmail(req.body).then(u => {
+        if(u.length === 0) {
+            userService.registerSocial(req.body, res);
+        }
+        else if(u.length > 0) {
+            res.status(200).json({error: "Email already have an account!"});
+        }
+        else {
+            res.status(200).json({error: "Try again later"});
+        }
+    });
 }
 function getUserInfoById(req, res,next) {
     console.log('getUserInfoById',req.body);

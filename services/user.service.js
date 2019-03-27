@@ -14,7 +14,9 @@ module.exports = {
     getUserByUid,
     getUserByEmail,
     addUserInfo,
-    getSocialById
+    getSocialById,
+    getSocialByEmail,
+    registerSocial
 };
 async  function authenticate({email, password}) {
 
@@ -62,7 +64,10 @@ async function register({user_name, email, password,cpassword ,fname, lname, soc
             }
         });
 }
-
+async function registerSocial({providerName, email, accessToken, expiresIn, status, session_key, first_name, last_name },res) {
+    console.log(providerName, email, accessToken, expiresIn, status, session_key, firstname, lastname);
+    res.send({message: "ok"});
+}
 async function getUserInfo(body) {
     console.log('body',body);
     const uinfo = await Userinfo.findOne({userid: body.id});
@@ -74,11 +79,15 @@ async function getUserByUid(body) {
     return u;
 }
 async function getUserByEmail({email}) {
-    
     const u = await User.find({email: email});   
     console.log(u);
     return u;
 }
+async function getSocialByEmail({email}) {
+    const u = await SocialUser.find({email: email});
+    return u;
+}
+
 async function addUserInfo(model) {
     console.log(model);
     // const currentUser = new Userinfo({"userid": model.userid,"display_name": model.user_name,"website": model.website, "profile_pic": model.profile_pic, "bio": "Hi! I am using SWA.", "interests": model.interests, "cover_image": model.cover_image, "mobile": model.mobile, "dob": model.dob, "address": model.address, "isVerified": false});    
