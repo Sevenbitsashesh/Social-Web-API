@@ -10,7 +10,7 @@ function jwt() {
     const secret = config.secret;    
     const req = {token: 'asdasd'};
     console.log(req);
-    return expressJwt({ secret, verify}).unless({
+    return expressJwt({ secret, isRevoked}).unless({
         path: [
             // public routes that don't require authentication
             // '/interests/getallinterests',
@@ -20,7 +20,7 @@ function jwt() {
             '/users/saveuserinfo',
             '/users/getuserinfobyid',
             '/users/socialauthenticate',
-            '/users/registerSocial'
+            '/users/registersocial'
         ]
     });
 }
