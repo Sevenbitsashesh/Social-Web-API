@@ -65,7 +65,7 @@ async function register({user_name, email, password,cpassword ,fname, lname, soc
         });
 }
 async function registerSocial({providerName, email, accessToken, expiresIn, status, session_key, first_name, last_name },res) {
-    console.log(providerName, email, accessToken, expiresIn, status, session_key, firstname, lastname);
+    console.log(providerName, email, accessToken, expiresIn, status, session_key);
     res.send({message: "ok"});
 }
 async function getUserInfo(body) {
