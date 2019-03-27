@@ -8,8 +8,8 @@ const socialUserSchema = new Schema({
     expiresIn: { type: String, required: false },
     status: { type: String, required: true },
     session_key: { type: String, required: true },
-    firstname: {type: String,required: false}, 
-    lastname: {type: String,required: false}, 
+    first_name: {type: String,required: false}, 
+    last_name: {type: String,required: false}, 
     token: {type: String,required: false}, 
     email: {type: String, required: false}
 });
