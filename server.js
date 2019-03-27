@@ -4,7 +4,7 @@ const app = express();
 const session = require('express-session');
 const cors = require('cors');
 // const path = require('path');
-app.use(cors({ origin: false }));
+app.use(cors({ origin: true }));
 
 const bodyParser = require('body-parser');
 const jwt = require('./_helper/jwt');
