@@ -83,7 +83,7 @@ async function registerSocial({providerName, authRes, email, first_name, last_na
             })
         }
         else {
-            res.status(200).json({ error: "Error Registering user"});
+            res.status(200).json({ error: errSoc});
         }
     })
     
