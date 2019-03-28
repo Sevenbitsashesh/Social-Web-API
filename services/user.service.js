@@ -64,20 +64,20 @@ async function register({user_name, email, password,cpassword ,fname, lname, soc
             }
         });
 }
-async function registerSocial({providerName, authRes, email, first_name, last_name, user_name, profile_pic, birthday  },res) {
+async function registerSocial({providerName, authRes, email, first_name, last_name, user_name, profile_pic, birthday, gender },res) {
 
     const socialUser = new SocialUser({providerName,accessToken: authRes.authResponse.accessToken,expiresIn: authRes.authResponse.expiresIn,session_key: authRes.authResponse.session_key, email,first_name, last_name, status: authRes.status});
     
-    socialUser.save((errSoc) => {
+    socialUser.insert(colSocialuser, function(errSoc) {
         if(!errSoc) {
-            const userInfo = new  Userinfo({userid: authRes.authResponse.userID, user_name, website: '', profile_pic, bio: 'Hi! I am using SWA.',interests: '', cover_image: '', mobile: '', birthday,  address: '', gender: 'male', verified: false, socialUser: true })
-            res.json({message: "Social User created"});
+            const userInfo = new  Userinfo({userid: authRes.authResponse.userID, user_name, website: '', profile_pic, bio: 'Hi! I am using SWA.',interests: '', cover_image: '', mobile: '', birthday,  address: '', gender: 'male', verified: false, socialUser: true , gender, socialUserId: colSocialuser._id });
+    
             userInfo.save((errInfo) => {
                     if(!errInfo) {
-                        res.json(socialUser);
+                        res.json(socialUser);                    
                     }
                     else {
-                        console.log(errInfo);
+                        
                         res.json({error: errInfo});
                     }
             })
