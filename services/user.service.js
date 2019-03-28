@@ -75,6 +75,8 @@ async function registerSocial({providerName, authRes, email, first_name, last_na
     
             userInfo.save((errInfo) => {
                     if(!errInfo) {
+                        const token = socialUser.generateJwt(userInfo);
+                        socialUser.token = token;
                         res.json(socialUser);                    
                     }
                     else {
