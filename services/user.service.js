@@ -64,9 +64,12 @@ async function register({user_name, email, password,cpassword ,fname, lname, soc
             }
         });
 }
-async function registerSocial({providerName, email, accessToken, expiresIn, status, session_key, firstname, lastname },res) {
-    console.log(providerName, email, accessToken, expiresIn, status, session_key, firstname, lastname);
-    res.json({message: "ok"});
+async function registerSocial({providerName, authRes, email, first_name, last_name, user_name, profile_pic, birthday  },res) {
+
+    const socialUser = new SocialUser({providerName,accessToken: authRes.authResponse.accessToken,expiresIn: authRes.authResponse.expiresIn,session_key: authRes.authResponse.session_key, email,first_name, last_name, status: authRes.status});
+    // const userInfo = {userid: authRes.authResponse.userID, user_name, website: '', profile_pic, bio: 'Hi! I am using SWA.',interests: '', cover_image: '', mobile: '', birthday,  address: '', gender: 'male', verified: false, socialUser: true }
+    
+    
 }
 async function getUserInfo(body) {
     console.log('body',body);
