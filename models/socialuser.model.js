@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 const jwt_token = require('jsonwebtoken');
 const config = require('../myconfig.json');
 const socialUserSchema = new Schema({
-    providerName: {type: String, unique: true, required: true},
+    providerName: {type: String, required: true},
     accessToken: { type: String, unique: true, required: true },
-    expiresIn: { type: String, required: false },
+    expiresIn: { type: String, required: true },
     status: { type: String, required: true },
     session_key: { type: String, required: true },
     first_name: {type: String,required: false}, 
