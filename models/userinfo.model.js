@@ -13,7 +13,8 @@ const userInfo = new Schema({
     mobile: {type: String},
     dob: {type: Date},
     address: {type: String},
-    socialUser: {type: Boolean}
+    socialUser: {type: Boolean},
+    socialUserId: {type: String}
 });
 
 
