@@ -69,9 +69,9 @@ async function registerSocial({providerName, authRes, email, first_name, last_na
     const socialUser = new SocialUser({providerName,accessToken: authRes.authResponse.accessToken,expiresIn: authRes.authResponse.expiresIn,session_key: authRes.authResponse.session_key, email,first_name, last_name, status: authRes.status});
     
     socialUser.save(socialUser, function(errSoc, result) {
-        console.log('result',result);
+        
         if(!errSoc) {
-            const userInfo = new  Userinfo({userid: authRes.authResponse.userID, user_name, website: '', profile_pic, bio: 'Hi! I am using SWA.',interests: '', cover_image: '', mobile: '', birthday,  address: '', gender: 'male', verified: false, socialUser: true , gender });
+            const userInfo = new  Userinfo({userid: authRes.authResponse.userID, user_name, website: '', profile_pic, bio: 'Hi! I am using SWA.',interests: '', cover_image: '', mobile: '', birthday,  address: '', gender: 'male', verified: false, socialUser: true , gender, socialUserId: result._id });
     
             userInfo.save((errInfo) => {
                     if(!errInfo) {
