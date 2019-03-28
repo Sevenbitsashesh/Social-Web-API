@@ -78,6 +78,7 @@ async function registerSocial({providerName, authRes, email, first_name, last_na
                     }
                     else {
                         console.log(errInfo);
+                        res.json({error: errInfo});
                     }
             })
         }
