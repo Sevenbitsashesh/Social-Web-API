@@ -10,7 +10,7 @@ router.post('/getuserinfobyid', getUserInfoById);
 router.post('/getuserbyuid', getUserById);
 router.post('/saveuserinfo', addUserInfo);
 router.post('/registersocial',registerSocial);
-router.get('/getpdf/:url',getPdf);
+
 module.exports = router;
 var path = require('path');
 function authenticate(req, res, next) {    
