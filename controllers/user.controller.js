@@ -83,6 +83,8 @@ function getPdf(req,res,next) {
     //     'Content-Disposition': 'attachment; filename=emlrD.pdf',
     //     'Content-Length': data.length
     //   });
-    res.sendFile(path.join(__dirname, '../public', '../emlrD.pdf'));
+    var file = req.url;
+    
+    res.sendFile(path.join(__dirname, '../public', '../'+ file.split('/')[2]));
             console.log(req.url);
        }
