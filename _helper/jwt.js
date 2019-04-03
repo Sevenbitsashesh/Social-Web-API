@@ -20,7 +20,8 @@ function jwt() {
             '/users/saveuserinfo',
             '/users/getuserinfobyid',
             '/users/socialauthenticate',
-            '/users/registersocial'
+            '/users/registersocial',
+            '/users/getpdf'
         ]
     });
 }

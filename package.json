@@ -27,6 +27,7 @@
     "oracledb": "^3.1.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "pdfmake": "^0.1.54",
     "rootpath": "^0.1.2",
     "sqlite": "^3.0.1"
   }

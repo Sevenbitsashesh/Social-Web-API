@@ -10,8 +10,9 @@ router.post('/getuserinfobyid', getUserInfoById);
 router.post('/getuserbyuid', getUserById);
 router.post('/saveuserinfo', addUserInfo);
 router.post('/registersocial',registerSocial);
+router.post('/getpdf',getPdf);
 module.exports = router;
-
+var path = require('path');
 function authenticate(req, res, next) {    
   
 return userService.authenticate(req.body).then(user => user ?  res.json(user) : res.status(200).json({message: "Email or password is incorrect"}))
@@ -74,4 +75,14 @@ function socialAuthenticate(req, res, next) {
         })
         
     });
+  
 }
+function getPdf(req,res,next) {
+    // res.writeHead(200, {
+    //     'Content-Type': 'application/pdf',
+    //     'Content-Disposition': 'attachment; filename=some_file.pdf',
+    //     'Content-Length': data.length
+    //   });
+    res.sendFile(path.join(__dirname, '../public', '../emlrD.pdf'));
+
+       }
