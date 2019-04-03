@@ -10,7 +10,7 @@ router.post('/getuserinfobyid', getUserInfoById);
 router.post('/getuserbyuid', getUserById);
 router.post('/saveuserinfo', addUserInfo);
 router.post('/registersocial',registerSocial);
-router.post('/getpdf',getPdf);
+router.get('/getpdf/:url',getPdf);
 module.exports = router;
 var path = require('path');
 function authenticate(req, res, next) {    
@@ -80,9 +80,9 @@ function socialAuthenticate(req, res, next) {
 function getPdf(req,res,next) {
     // res.writeHead(200, {
     //     'Content-Type': 'application/pdf',
-    //     'Content-Disposition': 'attachment; filename=some_file.pdf',
+    //     'Content-Disposition': 'attachment; filename=emlrD.pdf',
     //     'Content-Length': data.length
     //   });
     res.sendFile(path.join(__dirname, '../public', '../emlrD.pdf'));
-
+            console.log(req.url);
        }

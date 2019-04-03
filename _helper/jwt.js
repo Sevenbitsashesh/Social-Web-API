@@ -21,7 +21,8 @@ function jwt() {
             '/users/getuserinfobyid',
             '/users/socialauthenticate',
             '/users/registersocial',
-            '/users/getpdf'
+            '/users/getpdf/:url',
+            { url: /^\/users\/getpdf\/.*/, methods: ['GET'] }
         ]
     });
 }
