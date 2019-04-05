@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const router = express.Router();
-const   userService = require('../services/user.service');
+const userService = require('../services/user.service');
 router.post('/authenticate',authenticate);
 router.post('/socialauthenticate',socialAuthenticate);
 router.get('/', getAll);
@@ -77,14 +77,3 @@ function socialAuthenticate(req, res, next) {
     });
   
 }
-function getPdf(req,res,next) {
-    // res.writeHead(200, {
-    //     'Content-Type': 'application/pdf',
-    //     'Content-Disposition': 'attachment; filename=emlrD.pdf',
-    //     'Content-Length': data.length
-    //   });
-    var file = req.url;
-    
-    res.sendFile(path.join(__dirname, '../public', '../'+ file.split('/')[2]));
-            console.log(req.url);
-       }
