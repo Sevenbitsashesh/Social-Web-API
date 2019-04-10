@@ -13,16 +13,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(jwt());
+// app.get('/exercises', jwt());
 
-// app.use(session({secret: 'work-hard', resave: true, saveUninitialized: true}));
-// app.get('/',function checkSession(req,res,next) {    
-    
-//     // console.log(Date.now());
-// });
 
-app.use('/interests', require('./controllers/interests.controller'));
+
+app.use('/interests',require('./controllers/interests.controller'));
 app.use('/users', require('./controllers/user.controller'));
-app.use('/tweets', require('./controllers/tweet.controller'));
+app.use('/exercise',require('./controllers/exercise.controller'));
+app.use('/workout',require('./controllers/workout.controller'));
 
 
 app.use(errorHandler);

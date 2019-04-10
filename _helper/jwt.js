@@ -6,14 +6,20 @@ module.exports = jwt;
 
 
 function jwt() {
-    // console.log(Date.now()/1000);
+    
     const secret = config.secret;    
-    const req = {token: 'asdasd'};
-    console.log(req);
-    return expressJwt({ secret, isRevoked}).unless({
+    
+    return (expressJwt({ secret,  credentialsRequired: false, getToken: function from(req)  {
+        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+            return req.headers.authorization.split(' ')[1];
+        } else if (req.query && req.query.token) {
+          return req.query.token;
+        }
+        return null;
+      }  }).unless({
         path: [
             // public routes that don't require authentication
-            // '/interests/getallinterests',
+            
             '/users/authenticate',
             '/users/register',
             '/users/getuserbyuid',
@@ -24,20 +30,6 @@ function jwt() {
             '/users/getpdf/:url',
             { url: /^\/users\/getpdf\/.*/, methods: ['GET'] }
         ]
-    });
+    }));
 }
 
- async function isRevoked(req, payload, done) {
-    
-    const user = await  userService.getById(req.body);
-    
-    // revoke token if user no longer exists
-    if (!user) {
-        return done(null, true);
-    }
-    
-    done();
-};
-async function verify() {
-    console.log('hi')
-}
