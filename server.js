@@ -21,6 +21,7 @@ app.use('/interests',require('./controllers/interests.controller'));
 app.use('/users', require('./controllers/user.controller'));
 app.use('/exercise',require('./controllers/exercise.controller'));
 app.use('/workout',require('./controllers/workout.controller'));
+app.use('/meal',require('./controllers/meal.controller'));
 
 
 app.use(errorHandler);

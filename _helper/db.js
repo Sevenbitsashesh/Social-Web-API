@@ -12,5 +12,6 @@ module.exports = {
     socialUser: require('../models/socialuser.model'),
     interests: require('../models/interests.model'),
     exercise: require('../models/exercise.model'),
-    workout: require('../models/workout.model')
+    workout: require('../models/workout.model'),
+    meal: require('../models/meal.model')
 };
