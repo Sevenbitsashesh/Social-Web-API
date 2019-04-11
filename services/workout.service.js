@@ -12,7 +12,8 @@ async function getworkoutAll() {
 }
 async function addWorkout(exeModel) {
     const newWork = new Workout(exeModel);
-    // return newWork.save();
+    // console.log(newWork);
+    return newWork.save();
     
 }
 async function getMyWorkout(myid) {

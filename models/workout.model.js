@@ -7,8 +7,8 @@ const workSchema = new Schema({
     userid: { type: String, required: true },
     work_pic: { type: String, required: false },
     work_days: { type: Array, required: true },
-    exe_desc: { type: String, required: false },
-    exe_muscle: {type: String, required: true},
+    work_level: {type: String, required: true},
+    work_colortag: {type: String, required: true},
     // exe_create: { type: String, required: true },
     // exe_updated: { type: String, required: true },
 });

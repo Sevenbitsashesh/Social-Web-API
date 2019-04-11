@@ -11,15 +11,16 @@ function getworkoutAll(req,res,next) {
     })
 }
 function addworkout(req, res, next) {
-    const date =new Date();
-    const today = date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
+    // const date =new Date();
+    // const today = date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
+    console.log(req.body.work_days);
     
-    exeModel = { exe_name, userid, exe_type, exe_pic, exe_desc} = req.body;
-   exeService.addExercise(exeModel).then((items) => {
+    workModel = { work_name, userid, work_pic, work_days} = req.body;
+   workService.addWorkout(workModel).then((items) => {
        res.json(items);
    }).catch(err => {
         res.json({"error": err})
-   }) ;
+   });
 }
 
 function getmyWorkouts(req,res,next) {
