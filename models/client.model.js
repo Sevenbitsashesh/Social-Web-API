@@ -21,6 +21,7 @@ const clientSchema = new Schema ({
     
     
 // }
+Client.method
 clientSchema.set('toJSON', { virtuals: true });
 
 var Client = mongoose.model('Client', clientSchema,'clients');
