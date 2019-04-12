@@ -16,7 +16,7 @@ function addclient(req, res, next) {
     // const today = date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
     // console.log(req.body.work_days);
     
-    workModel = { work_name, userid, work_pic, work_days} = req.body;
+    clientModel = { client_name, userid, work_pic, work_days} = req.body;
    workService.addWorkout(workModel).then((items) => {
        res.json(items);
    }).catch(err => {
