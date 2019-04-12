@@ -17,5 +17,5 @@ async function addClient(clientModel) {
     
 }
 async function getMyClient(myid) {
-    return Client.find({userid: myid});
+    return Client.find({trainerid: myid});
 }

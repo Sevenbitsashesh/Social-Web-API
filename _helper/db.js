@@ -13,5 +13,6 @@ module.exports = {
     interests: require('../models/interests.model'),
     exercise: require('../models/exercise.model'),
     workout: require('../models/workout.model'),
-    meal: require('../models/meal.model')
+    meal: require('../models/meal.model'),
+    client: require('../models/client.model')
 };
