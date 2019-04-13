@@ -11,9 +11,10 @@ async function getclientAll() {
     return Client.find();
 }
 async function addClient(clientModel) {
-    const newClient = new Client(exeModel);
-    // console.log(newWork);
-    return newClient.save();
+    const newClient = new Client(clientModel);
+    console.log(newClient);
+    // return new Promise();
+    // return newClient.save();
     
 }
 async function getMyClient(myid) {

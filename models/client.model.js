@@ -7,7 +7,8 @@ const clientSchema = new Schema ({
     trainerid: { type: String, required: true },
     goal: { type: String, required: false },
     client_level: { type: String, required: true },
-    client_measurement: {type: Array, required: true}
+    client_measurement: {type: Array, required: true},
+    email: { type: String, required: true }
     // exe_create: { type: String, required: true },
     // exe_updated: { type: String, required: true },
 });
@@ -21,7 +22,7 @@ const clientSchema = new Schema ({
     
     
 // }
-Client.method
+
 clientSchema.set('toJSON', { virtuals: true });
 
 var Client = mongoose.model('Client', clientSchema,'clients');
