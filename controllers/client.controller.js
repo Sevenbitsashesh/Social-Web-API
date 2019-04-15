@@ -16,7 +16,7 @@ function addclient(req, res, next) {
     // const today = date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
     // console.log(req.body.work_days);
      password = Math.random().toString();
-   const clientModel = { client_name, trainerid,first_name, last_name,user_name, password: password } = req.body;
+   const clientModel = { client_name, trainerid,first_name, last_name,user_name, password } = req.body;
    clientService.addClient(clientModel).then((items) => {
        res.json(items);
    }).catch(err => {

@@ -5,7 +5,7 @@ const jwt_token = require('jsonwebtoken');
 const clientSchema = new Schema ({
     client_name: {type: String, required: true},
     trainerid: { type: String, required: true },
-    goal: { type: String, required: false },
+    goal: { type: String, required: true },
     client_level: { type: String, required: true },
     client_measurement: {type: Array, required: true},
     email: { type: String, required: true }
