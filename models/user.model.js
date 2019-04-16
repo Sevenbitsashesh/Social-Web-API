@@ -8,7 +8,7 @@ const userSchema = new Schema({
     hash: { type: String, required: false },
     fname: { type: String, required: true },
     lname: { type: String, required: true },
-    
+    role: {type: String, required: true}
     // createdDate: { type: Date, default: Date.now },
     // email: {type: String, required: true},
     
