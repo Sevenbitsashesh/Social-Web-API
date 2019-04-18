@@ -31,15 +31,8 @@ async function addClientUser({fname, lname, email, trainerid, client_goal, clien
                     const clientInfo = new Client({"trainerid": trainerid, "client_name": fname +' '+ lname, "email": email, "client_goal": client_goal, "client_level": client_level,"client_measurement": client_measurement, "client_workplan": client_workplan, "client_mealplan": client_mealplan})
                     clientInfo.save((errClient => {
                         if(!errClient) {
-                            mailService.sendMail({email: email,password: pass}).then(mailData => {
-                                console.log(mailData);
-                                res.json(u);
-                            }).catch(err => {
-                                console.log(err);
-                                res.json({error: 'Error Sending email'});
-                                
-                            })
-                            
+                            mailService.sendMail({ email,pass,fname, lname, trainerid});
+                            res.json(u);
                         }
                         else {
                             res.json({error: "Can not add Client Info"});

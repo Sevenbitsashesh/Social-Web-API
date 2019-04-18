@@ -23,6 +23,7 @@
     "firebase-admin": "^7.0.0",
     "firebase-functions": "^2.2.0",
     "jsonwebtoken": "^8.4.0",
+    "mailgun-js": "^0.22.0",
     "mongoose": "^5.2.8",
     "nodemailer": "^6.1.0",
     "nodemailer-smtp-transport": "^2.7.4",
