@@ -9,7 +9,7 @@ function getMailoptions(email, password) {
         from: 'silentwraith938@gmail.com',
         to: email,
         subject: 'You are Added as client of Someone',
-        text: 'Your email is :'+email+'and password is :'+password
+        text: 'Your email is : '+email+' and password is :'+password+' '+'Login in to https://pt-fits-life.firebaseapp.com'
       };
       return mailOptions
 }
