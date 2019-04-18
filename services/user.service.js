@@ -36,14 +36,14 @@ async function getById(id) {
 async function getAll() {
     return await User.find().select('-hash');
 }
-async function register({user_name, email, password,cpassword ,fname, lname, socialUser},res) {
+async function register({user_name, email, password,cpassword ,fname, lname, socialUser, role},res) {
     
-    console.log({user_name, email, password ,cpassword,fname, lname, socialUser});
+    console.log({user_name, email, password ,cpassword,fname, lname, socialUser, role});
         const hash = bcrypt.hashSync(password, 10, (err) => {
             console.log(err);
         })
         console.log(hash);
-        const u = new User({user_name, email, hash, fname, lname});                        
+        const u = new User({user_name, email, hash, fname, lname, role});                        
         u.save((err) => {
             const currentUser = new Userinfo({"userid": u._id,"user_name": user_name,"website": "", "profile_pic": "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt=media&token=55b2f2e5-aec4-4819-9a10-ae9315a4cb1d", "bio": "Hi! I am using SWA.", "interests": "", "cover_image": "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profile%2F9aaded4a-e6ac-407d-9523.jpg?alt=media&token=4ce6ecdc-bd12-45b5-b610-851c4f00e928", "mobile": "", "dob": "", "address": "", "isVerified": false, "socialUser": socialUser});    
             if(!err) {
@@ -60,6 +60,7 @@ async function register({user_name, email, password,cpassword ,fname, lname, soc
                 }))
             }
             else {
+                console.log(err);
                 res.status(200).json({ error: "Error Registering user"});
             }
         });

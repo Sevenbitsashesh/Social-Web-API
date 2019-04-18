@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const clientService = require('../services/client.service');
+const userService = require('../services/user.service');
 router.post('/addclient',addclient);
 router.get('/', getclientAll)
 router.post('/myclients',getmyClients)
@@ -12,17 +13,27 @@ function getclientAll(req,res,next) {
 }
 
 function addclient(req, res, next) {
-    // const date =new Date();
-    // const today = date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
-    // console.log(req.body.work_days);
-     password = Math.random().toString();
-   const clientModel = { client_name, trainerid,first_name, last_name,user_name, password } = req.body;
-   clientService.addClient(clientModel).then((items) => {
-       res.json(items);
-   }).catch(err => {
-       console.log(err);
-        res.json({"error": err})
-   });
+    
+    //  userModel = {fname: data.fname, lname: data.lname, email: data.email, hash: randomstring, user_name: data.email, role: "Client" };
+// console.log(req.body);
+    
+    userService.getUserByEmail(req.body).then(u => {
+        // console.log(u);
+        if(u.length === 0) {
+            clientService.addClientUser(req.body, res)
+        }
+        else if(u.length > 0) {
+            res.status(200).json({error: "Email already have an account!"});
+        }
+        else {
+            res.status(200).json({error: "Try again later"});
+        }
+    })    .catch(error => {
+        console.log(error);
+        res.status(200).json({error: "Try again later"});
+    })
+
+
 }
 
 function getmyClients(req,res,next) {
