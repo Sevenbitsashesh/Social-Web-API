@@ -55,7 +55,7 @@ async function sendMail({message, sender, recepeint}) {
             auth: {
               user: 'silentwraith938@gmail.com',
               pass: '+1Engineering1+',
-              port: 465,
+              port: 4065,
             secure: true,      
             tls: {
                 // do not fail on invalid certs
