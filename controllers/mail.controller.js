@@ -17,6 +17,7 @@ async function sendMail(req,res,next) {
         // res.json({success: "Response sent"});
         
     }catch(e) {
+        console.log(e)
         await next(e);
     }
       

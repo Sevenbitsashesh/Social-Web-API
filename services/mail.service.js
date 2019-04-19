@@ -41,7 +41,8 @@ function getMailoptions(message, sender, recepeint) {
         from: 'silentwraith938@gmail.com',
         to: recepeint.email,
         subject: 'You are Added as client of Someone',
-        text: message.message
+        text: message.message,
+        
       };
       return mailOptions
 }
@@ -53,7 +54,13 @@ async function sendMail({message, sender, recepeint}) {
             host: 'smtp.gmail.com',
             auth: {
               user: 'silentwraith938@gmail.com',
-              pass: '+1Engineering1+'
+              pass: '+1Engineering1+',
+              port: 465,
+            secure: true,      
+            tls: {
+                // do not fail on invalid certs
+                rejectUnauthorized: false
+            }
             }
             })).sendMail(getMailoptions(message,sender,recepeint));
 }
