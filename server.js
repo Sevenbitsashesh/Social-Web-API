@@ -23,6 +23,7 @@ app.use('/exercise',require('./controllers/exercise.controller'));
 app.use('/workout',require('./controllers/workout.controller'));
 app.use('/meal',require('./controllers/meal.controller'));
 app.use('/client',require('./controllers/client.controller'));
+app.use('/mail',require('./controllers/mail.controller'));
 
 
 app.use(errorHandler);

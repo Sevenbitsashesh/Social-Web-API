@@ -15,7 +15,7 @@ function errorHandler(err, req, res, next) {
 
     if (err.name === 'UnauthorizedError') {
         
-        // console.log(req.body);
+        console.log(req.body);
         // jwt authentication error
         return res.status(401).json({ message: 'not valid Token' });
     }
