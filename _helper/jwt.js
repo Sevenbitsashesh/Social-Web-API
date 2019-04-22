@@ -9,12 +9,16 @@ function jwt() {
     
     const secret = config.secret;    
     
-    return (expressJwt({ secret,  credentialsRequired: false, getToken: function from(req)  {
+    return (expressJwt({ secret,  credentialsRequired: true, getToken: function from(req)  {
+      
         if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+      
             return req.headers.authorization.split(' ')[1];
         } else if (req.query && req.query.token) {
+      
           return req.query.token;
         }
+      
         return null;
       }  }).unless({
         path: [
