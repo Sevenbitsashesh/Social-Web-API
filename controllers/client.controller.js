@@ -38,6 +38,7 @@ function addclient(req, res, next) {
 
 function getmyClients(req,res,next) {
     const myid = req.body.trainerid;
+    console.log(req.body)
     clientService.getMyClient(myid).then(clientData => {
         if(clientData.length > 0) {
                 res.json(clientData)

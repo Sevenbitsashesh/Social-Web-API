@@ -8,13 +8,10 @@ module.exports = router;
 async function sendMail(req,res,next) {
     
     try {
-        await mailService.sendMail(req.body).then(e => {
-            console.log(e);
-            res.send({message: e});
-        });
+        await mailService.sendMail(req.body);
       
         
-        // res.json({success: "Response sent"});
+        res.json({success: "Response sent"});
         
     }catch(e) {
         console.log(e)
