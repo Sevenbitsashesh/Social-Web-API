@@ -14,7 +14,7 @@ var mailgun = require('mailgun-js')({apiKey: mailconfig.api_key, domain:mailconf
 
 async function sendMail({message, sender, recepeint}) {
   console.log(message, sender, recepeint)
-      //  new Promise((resolve, reject) => {
+      await new Promise((resolve, reject) => {
         
         const data = {
           from: 'PT_APP <parmar.ashesh@tristonsoft.com>',
@@ -32,7 +32,7 @@ async function sendMail({message, sender, recepeint}) {
       });
       // mailgun.messages().send(data, function (error, body) {
       //   console.log(body);
-      // });
+      });
 
 }
 // function getMailoptions(message, sender, recepeint) {
