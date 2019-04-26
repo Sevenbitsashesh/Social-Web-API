@@ -26,7 +26,9 @@ function addmeal(req, res, next) {
 function getmyMeal(req,res,next) {
     const myid = req.body.userid;
     mealService.getMymeal(myid).then(mealData => {
+        
         if(mealData.length > 0) {
+            console.log('in');
                 res.json(mealData)
         }
         else {

@@ -17,5 +17,6 @@ async function addMeal(mealModel) {
     
 }
 async function getMymeal(myid) {
+    console.log('mealid'+myid);
     return Meal.find({userid: myid});
 }
