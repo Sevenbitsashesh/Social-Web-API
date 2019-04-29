@@ -5,6 +5,7 @@ const userService = require('../services/user.service');
 router.post('/addclient',addclient);
 router.get('/', getclientAll)
 router.post('/myclients',getmyClients)
+router.post('/getclient',getClient)
 module.exports = router;
 function getclientAll(req,res,next) {
     return clientService.getclientAll().then(clientItems => {
@@ -15,7 +16,7 @@ function getclientAll(req,res,next) {
 function addclient(req, res, next) {
     
     //  userModel = {fname: data.fname, lname: data.lname, email: data.email, hash: randomstring, user_name: data.email, role: "Client" };
-// console.log(req.body);
+console.log(req.body);
     
     userService.getUserByEmail(req.body).then(u => {
         // console.log(u);
@@ -46,5 +47,20 @@ function getmyClients(req,res,next) {
         else {
             res.json({message: null})
         }
+    })
+}
+
+function getClient(req, res, next) {
+    
+    const {clientid, trainerid} = req.body;
+    clientService.getClient(clientid, trainerid).then(clientInfo => {
+        if(clientInfo.length > 0) {
+            res.json(clientInfo);
+        }
+        else {
+            res.json({message: "No record"});
+        }
+    }).catch(error => {
+        res.json({error: error});
     })
 }

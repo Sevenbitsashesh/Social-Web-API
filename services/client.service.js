@@ -8,14 +8,15 @@ const UserInfo = db.userinfo;
 module.exports = {
     getclientAll,
     addClientUser,
-    getMyClient
+    getMyClient,
+    getClient
 }
 async function getclientAll() {
     return Client.find();
 }
 async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement,  client_workplan, client_mealplan},res) {
     const pass = Math.random().toString(32);
-console.log(pass);
+    
     const h = bcrypt.hashSync(pass, 10, (err) => {
         console.log(err);
     })
@@ -30,7 +31,7 @@ console.log(pass);
                     // res.json(u);
                     const clientInfo = new Client({"trainerid": trainerid, "client_name": fname +' '+ lname, "email": email, "client_goal": client_goal, "client_level": client_level,"client_measurement": client_measurement, "client_workplan": client_workplan, "client_mealplan": client_mealplan})
                     clientInfo.save((errClient => {
-                        console.log(errClient);
+                      
                         if(!errClient) {
                             // mailService.sendMail({ email,pass,fname, lname, trainerid});
                             res.json(u);
@@ -59,4 +60,9 @@ console.log(pass);
 async function getMyClient(myid) {
     console.log(myid);
     return Client.find({trainerid: myid});
+}
+
+async function getClient(clientid, trainerid) {
+    console.log(clientid, trainerid);
+    return Client.find({_id: clientid, trainerid: trainerid });
 }
