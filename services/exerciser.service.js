@@ -12,6 +12,8 @@ async function getexerciseAll() {
     return Exercise.find();
 }
 async function addExercise(exeModel) {
+    // console.log(exeModel.split('')
+    console.log(exeModel);
     const newExe = new Exercise(exeModel);
     return newExe.save();
 }

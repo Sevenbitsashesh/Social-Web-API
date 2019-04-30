@@ -9,6 +9,7 @@ const exeSchema = new Schema({
     exe_type: { type: String, required: true },
     exe_desc: { type: String, required: false },
     exe_muscle: {type: String, required: true},
+    sec_exe_muscle: {type: Array, required: true},
     // exe_create: { type: String, required: true },
     // exe_updated: { type: String, required: true },
 });

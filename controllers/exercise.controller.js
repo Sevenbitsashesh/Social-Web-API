@@ -15,7 +15,8 @@ function addexercise(req, res, next) {
     const date =new Date();
     const today = date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
     
-    exeModel = { exe_name, userid, exe_type, exe_pic, exe_desc} = req.body;
+    exeModel = { exe_name, userid, exe_type, exe_pic, exe_desc, sec_exe_muscle} = req.body;
+    console.log(exeModel);
    exeService.addExercise(exeModel).then((items) => {
        res.json(items);
    }).catch(err => {
