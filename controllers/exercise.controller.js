@@ -4,6 +4,7 @@ const exeService = require('../services/exerciser.service');
 router.post('/addexercise',addexercise);
 router.get('/', getexerciseAll)
 router.post('/myexercises',getmyExercises)
+router.post('/getmuscles',getMuscles)
 module.exports = router;
 function getexerciseAll(req,res,next) {
     return exeService.getexerciseAll().then(exeItems => {
@@ -34,4 +35,12 @@ function getmyExercises(req,res,next) {
             
     })
     
+}
+function getMuscles(req,res,next) {
+    exeService.getMuscles().then(muscles => {
+        console.log(muscles);
+        if(muscles.length > 0) {
+            res.json(muscles);
+        }
+    });
 }
