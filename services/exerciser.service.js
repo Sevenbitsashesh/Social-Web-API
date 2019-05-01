@@ -6,7 +6,8 @@ module.exports = {
     getexerciseAll,
     addExercise,
     getMyExercise,
-    getMuscles
+    getMuscles,
+    getExercise
 }
 async function getexerciseAll() {
     return Exercise.find();
@@ -22,4 +23,8 @@ async function getMyExercise(myid) {
 }
 async function getMuscles() {
     return Muscle.find();
+}
+async function getExercise(data) {
+    console.log(data);
+    return Exercise.find(data);
 }

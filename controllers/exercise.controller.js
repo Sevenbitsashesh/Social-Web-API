@@ -5,6 +5,7 @@ router.post('/addexercise',addexercise);
 router.get('/', getexerciseAll)
 router.post('/myexercises',getmyExercises)
 router.post('/getmuscles',getMuscles)
+router.post('/getexercise',getMyExerciseByMuscleId)
 module.exports = router;
 function getexerciseAll(req,res,next) {
     return exeService.getexerciseAll().then(exeItems => {
@@ -44,4 +45,14 @@ function getMuscles(req,res,next) {
             res.json(muscles);
         }
     });
+}
+function getMyExerciseByMuscleId(req,res, next) {
+    exeService.getExercise(req.body).then(exeItem => {
+        if(exeItem.length > 0) {
+            res.json(exeItem);
+        }
+        else {
+            res.json({error: "No records"});
+        }
+    })
 }
