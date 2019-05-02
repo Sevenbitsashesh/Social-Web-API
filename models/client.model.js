@@ -9,8 +9,10 @@ const clientSchema = new Schema ({
     client_level: { type: String, required: true },
     client_measurement: {type: Array, required: true},
     email: { type: String, required: true },
-    client_workplan: { type: String, required: true },
+    client_workplan: { type: Array, required: true },
     client_mealplan: { type: String, required: true },
+    startFrom: {type: Date, required: true},
+    clientinfoid: {type: String, required: true}
     // exe_create: { type: String, required: true },
     // exe_updated: { type: String, required: true },
 });

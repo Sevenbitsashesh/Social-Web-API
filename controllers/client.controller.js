@@ -6,6 +6,8 @@ router.post('/addclient',addclient);
 router.get('/', getclientAll)
 router.post('/myclients',getmyClients)
 router.post('/getclient',getClient)
+
+
 module.exports = router;
 function getclientAll(req,res,next) {
     return clientService.getclientAll().then(clientItems => {
@@ -38,6 +40,8 @@ console.log(req.body);
 }
 
 function getmyClients(req,res,next) {
+    
+    
     const myid = req.body.trainerid;
     console.log(req.body)
     clientService.getMyClient(myid).then(clientData => {
@@ -64,3 +68,5 @@ function getClient(req, res, next) {
         res.json({error: error});
     })
 }
+
+
