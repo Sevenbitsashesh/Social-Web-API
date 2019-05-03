@@ -4,7 +4,12 @@ const workService = require('../services/workout.service');
 router.post('/addworkout',addworkout);
 router.get('/', getworkoutAll)
 router.post('/myworkouts',getmyWorkouts)
+
+router.post('/myworkoutplan',myworkoutplan)
 module.exports = router;
+
+// Trainer Services
+
 function getworkoutAll(req,res,next) {
     return workService.getworkoutAll().then(exeItems => {
         res.json(exeItems);
@@ -35,4 +40,18 @@ function getmyWorkouts(req,res,next) {
     })
     
     
+}
+
+// Client Services 
+
+function myworkoutplan(req,res,next) {
+    const myid = req.body.userid;
+    workService.getMyWorkout(myid).then(workData => {
+        if(workData.length > 0) {
+                res.json(workData)
+        }
+        else {
+            res.json({message: null})
+        }
+    })
 }

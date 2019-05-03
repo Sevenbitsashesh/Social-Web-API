@@ -6,7 +6,7 @@ router.post('/addclient',addclient);
 router.get('/', getclientAll)
 router.post('/myclients',getmyClients)
 router.post('/getclient',getClient)
-
+router.post('/getmydata', getMyData)
 
 module.exports = router;
 function getclientAll(req,res,next) {
@@ -69,4 +69,20 @@ function getClient(req, res, next) {
     })
 }
 
+function getMyData(req, res, next) {
+
+    const {userinfoid} = req.body;
+    clientService.getMyData(userinfoid).then(clientInfo => {
+        if(clientInfo.length > 0) {
+            res.json(clientInfo);
+        }
+        else {
+            res.json({message: "No record"});
+        }
+    }).catch(error => {
+        console.log(error);
+        res.json({error: error});
+    })
+
+}
 

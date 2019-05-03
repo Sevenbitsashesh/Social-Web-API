@@ -5,8 +5,11 @@ const Workout = db.workout;
 module.exports = {
     getworkoutAll,
     addWorkout,
-    getMyWorkout
+    getMyWorkout,
+    getMyWorkoutPlan
 }
+// Trainer Service
+
 async function getworkoutAll() {
     return Workout.find();
 }
@@ -18,4 +21,9 @@ async function addWorkout(exeModel) {
 }
 async function getMyWorkout(myid) {
     return Workout.find({userid: myid});
+}
+
+// Client Service
+async function getMyWorkoutPlan(myid) {
+return Workout.find({})
 }

@@ -10,12 +10,12 @@ module.exports = {
     addClientUser,
     getMyClient,
     getClient,
-    
+    getMyData
 }
 async function getclientAll() {
     return Client.find();
 }
-async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement,  client_workplan, client_mealplan,workout_planid, weeks, dob, gender},res) {
+async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, client_mealplan,workout_planid, weeks, dob, gender, clientinfoid},res) {
     const pass = Math.random().toString(32);
     
     let today = new Date();    
@@ -31,7 +31,7 @@ async function addClientUser({fname, lname, email, trainerid, client_goal, clien
                 if(!error) {
                     // console.log('New User Added!'+ user_name);
                     // res.json(u);
-                    const clientInfo = new Client({"trainerid": trainerid, "client_name": fname +' '+ lname, "email": email, "client_goal": client_goal, "client_level": client_level,"client_measurement": client_measurement, "client_workplan": {workout_planid: workout_planid, weeks: weeks}, "client_mealplan": client_mealplan, "startFrom": today, clientinfoid: });
+                    const clientInfo = new Client({"trainerid": trainerid, "client_name": fname +' '+ lname, "email": email, "client_goal": client_goal, "client_level": client_level,"client_measurement": client_measurement, "client_workplan": {workout_planid: workout_planid, weeks: weeks}, "client_mealplan": client_mealplan, "startFrom": today, clientinfoid:  currentUser._id});
                     clientInfo.save((errClient => {
                       
                         if(!errClient) {
@@ -67,4 +67,10 @@ async function getMyClient(myid) {
 async function getClient(clientid, trainerid) {
     console.log(clientid, trainerid);
     return Client.find({_id: clientid, trainerid: trainerid });
+}
+
+
+// Client Service
+async function getMyData({userinfoid}) {
+    return Client.find({userinfoid: userinfoid});
 }
