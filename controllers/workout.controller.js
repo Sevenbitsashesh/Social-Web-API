@@ -45,10 +45,11 @@ function getmyWorkouts(req,res,next) {
 // Client Services 
 
 function myworkoutplan(req,res,next) {
-    const myid = req.body.userid;
-    workService.getMyWorkout(myid).then(workData => {
+    
+    const workoutid = req.body.workoutid;
+    workService.getMyWorkoutPlan(workoutid).then(workData => {
         if(workData.length > 0) {
-                res.json(workData)
+                res.json(workData[0])
         }
         else {
             res.json({message: null})

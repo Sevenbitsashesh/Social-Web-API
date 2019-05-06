@@ -24,6 +24,7 @@ async function getMyWorkout(myid) {
 }
 
 // Client Service
-async function getMyWorkoutPlan(myid) {
-return Workout.find({})
+async function getMyWorkoutPlan(workoutid) {
+    console.log(workoutid)
+return Workout.find({_id: workoutid});
 }

@@ -71,6 +71,7 @@ async function getClient(clientid, trainerid) {
 
 
 // Client Service
-async function getMyData({userinfoid}) {
-    return Client.find({userinfoid: userinfoid});
+async function getMyData(clientinfoid) {
+    console.log(clientinfoid)
+    return Client.find({clientinfoid: clientinfoid});
 }

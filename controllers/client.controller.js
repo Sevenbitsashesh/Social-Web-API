@@ -71,8 +71,8 @@ function getClient(req, res, next) {
 
 function getMyData(req, res, next) {
 
-    const {userinfoid} = req.body;
-    clientService.getMyData(userinfoid).then(clientInfo => {
+    const {clientinfoid} = req.body;
+    clientService.getMyData(clientinfoid).then(clientInfo => {
         if(clientInfo.length > 0) {
             res.json(clientInfo);
         }
