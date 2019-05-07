@@ -16,7 +16,8 @@ module.exports = {
     addUserInfo,
     getSocialById,
     getSocialByEmail,
-    registerSocial
+    registerSocial,
+    updateProfile
 };
 async  function authenticate({email, password}) {
 
@@ -94,7 +95,7 @@ async function registerSocial({providerName, authRes, email, first_name, last_na
     
 }
 async function getUserInfo(body) {
-    console.log('body',body);
+    // console.log('body',body);
     const uinfo = await Userinfo.findOne({userid: body.id});
     
     return uinfo;
@@ -144,4 +145,8 @@ async function socialAuthenticate(social) {
     } 
         
         // return {error: "Could not find user!"};
+}
+async function updateProfile(user) {
+    console.log(user);
+    return Userinfo.updateOne({_id: user.id},{$set :user} ,{ upsert: true })
 }

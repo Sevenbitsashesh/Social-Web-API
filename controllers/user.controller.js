@@ -10,6 +10,7 @@ router.post('/getuserinfobyid', getUserInfoById);
 router.post('/getuserbyuid', getUserById);
 router.post('/saveuserinfo', addUserInfo);
 router.post('/registersocial',registerSocial);
+router.post('/updateuserinfo',updateProfile);
 
 module.exports = router;
 var path = require('path');
@@ -76,4 +77,27 @@ function socialAuthenticate(req, res, next) {
         
     });
   
+}
+function updateProfile(req,res,next) {
+    const {userid} = req.body;
+    
+    userService.getUserInfo(req.body).then(dataUser => {
+        
+        if(dataUser) {
+            userService.updateProfile(req.body).then(updatedUser => {
+               
+                if(updatedUser.ok) {
+                    res.json({message: 'success'});
+                }
+                else {
+                    res.json({message: 'failed'});    
+                }
+            }).catch(error => {
+                res.json({message: 'failed'});
+            })
+            
+        }
+        
+    })
+    
 }
