@@ -4,7 +4,7 @@ const workService = require('../services/workout.service');
 router.post('/addworkout',addworkout);
 router.get('/', getworkoutAll)
 router.post('/myworkouts',getmyWorkouts)
-
+router.post('/myworkout',getmyWorkout)
 router.post('/myworkoutplan',myworkoutplan)
 module.exports = router;
 
@@ -30,7 +30,7 @@ function addworkout(req, res, next) {
 
 function getmyWorkouts(req,res,next) {
     const myid = req.body.userid;
-    workService.getMyWorkout(myid).then(workData => {
+    workService.getMyWorkouts(myid).then(workData => {
         if(workData.length > 0) {
                 res.json(workData)
         }
@@ -41,7 +41,19 @@ function getmyWorkouts(req,res,next) {
     
     
 }
-
+function getmyWorkout(req, res, next) {
+    const workid = req.body.workoutid;
+    workService.getMyWorkout(workid).then(workData => {
+        if(workData.length > 0) {
+            res.json(workData[0]);
+        }
+        else {
+            res.json({message: 'No Record'});
+        }
+    }).catch(error => {
+        res.json({message: error});
+    })
+}
 // Client Services 
 
 function myworkoutplan(req,res,next) {
