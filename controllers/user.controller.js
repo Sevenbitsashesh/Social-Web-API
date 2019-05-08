@@ -80,13 +80,14 @@ function socialAuthenticate(req, res, next) {
 }
 function updateProfile(req,res,next) {
     const {userid} = req.body;
-    
-    userService.getUserInfo(req.body).then(dataUser => {
+    // console.log(req.body);
+    //                 res.json({message: 'success'});
+    userService.getUserInfoById(req.body).then(dataUser => {
         
         if(dataUser) {
             userService.updateProfile(req.body).then(updatedUser => {
-               
-                if(updatedUser.ok) {
+                console.log(updatedUser)
+                if(updatedUser) {
                     res.json({message: 'success'});
                 }
                 else {

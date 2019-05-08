@@ -7,7 +7,7 @@ router.get('/', getclientAll)
 router.post('/myclients',getmyClients)
 router.post('/getclient',getClient)
 router.post('/getmydata', getMyData)
-
+router.post('/updateassessment', updateAssessment)
 module.exports = router;
 function getclientAll(req,res,next) {
     return clientService.getclientAll().then(clientItems => {
@@ -85,4 +85,28 @@ function getMyData(req, res, next) {
     })
 
 }
+function updateAssessment(req, res, next) {
+    const {id} = req.body;
+    
+    clientService.getMyClientById(id).then(clientData => {
+        if(clientData) {
+            clientService.updateAssessment(req.body).then(updateData => {
+                
+                if(updateData.ok) {
+                    res.json({message: "success"});
+                }
+                else {
+                    res.json({message: "failed"});
+                }
+            })            
+        }
+        else {
+            res.json({message: "failed"});
+        }
+        
+    }).catch(error => {
+        res.json({message: "failed"});
+    })
+}
+
 

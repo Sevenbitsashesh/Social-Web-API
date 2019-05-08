@@ -17,7 +17,8 @@ module.exports = {
     getSocialById,
     getSocialByEmail,
     registerSocial,
-    updateProfile
+    updateProfile,
+    getUserInfoById
 };
 async  function authenticate({email, password}) {
 
@@ -96,8 +97,12 @@ async function registerSocial({providerName, authRes, email, first_name, last_na
 }
 async function getUserInfo(body) {
     // console.log('body',body);
-    const uinfo = await Userinfo.findOne({userid: body.id});
-    
+    const uinfo = await Userinfo.findOne({userid: body.id});    
+    return uinfo;
+}
+async function getUserInfoById(body) {
+    // console.log('body',body);
+    const uinfo = await Userinfo.findOne({_id: body.id});    
     return uinfo;
 }
 async function getUserByUid(body) {

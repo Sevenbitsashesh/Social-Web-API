@@ -10,7 +10,9 @@ module.exports = {
     addClientUser,
     getMyClient,
     getClient,
-    getMyData
+    getMyData,
+    getMyClientById,
+    updateAssessment
 }
 async function getclientAll() {
     return Client.find();
@@ -69,9 +71,19 @@ async function getClient(clientid, trainerid) {
     return Client.find({_id: clientid, trainerid: trainerid });
 }
 
+async function getMyClientById(clientid) {
+    return  Client.findOne({_id: clientid});
+  
+}
+async function updateAssessment({assessModel, id}) {
+    console.log(assessModel, id);
+    const updateAssess = Client.updateOne({_id: id},{$set :{client_measurement: assessModel}} ,{ upsert: false })
+    return updateAssess;
+}
+
 
 // Client Service
 async function getMyData(clientinfoid) {
-    console.log(clientinfoid)
+    // console.log(clientinfoid)
     return Client.find({clientinfoid: clientinfoid});
 }
