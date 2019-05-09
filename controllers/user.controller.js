@@ -16,7 +16,7 @@ module.exports = router;
 var path = require('path');
 function authenticate(req, res, next) {    
   
-return userService.authenticate(req.body).then(user => user ?  res.json(user) : res.status(200).json({message: "Email or password is incorrect"}))
+return userService.authenticate(req.body).then(user => user ?  res.json(user) : res.status(200).json({message: 'failed'}))
 .catch(err => next(err));
 };
 function getAll(req,res, next) {
