@@ -24,6 +24,7 @@ function addworkout(req, res, next) {
    workService.addWorkout(workModel).then((items) => {
        res.json(items);
    }).catch(err => {
+       console.log(err)
         res.json({"error": err})
    });
 }
