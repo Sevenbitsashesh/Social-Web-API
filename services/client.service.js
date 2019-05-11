@@ -38,7 +38,7 @@ async function addClientUser({fname, lname, email, trainerid, client_goal, clien
                     // res.json(u);
 
                     // const clientInfo = new Client({"trainerid": trainerid, "client_name": fname +' '+ lname, "email": email, "client_goal": client_goal, "client_level": client_level,"client_measurement": client_measurement, "client_workplan": {workout_planid: workout_planid, weeks: weeks}, "client_mealplan": client_mealplan, "startFrom": today, clientinfoid:  currentUser._id});
-                    const clientInfo = new Client({"trainerid": trainerid, "client_name": fname +' '+ lname, "email": email, "client_goal": client_goal, "client_level": client_level,"client_measurement": client_measurement,"client_workplan": {workout_planid: '', weeks: weeks}, "startFrom": today, clientinfoid:  currentUser._id, client_mealplan: "client_mealplan1"});
+                    const clientInfo = new Client({"trainerid": trainerid, "client_name": fname +' '+ lname, "email": email, "client_goal": client_goal, "client_level": client_level,"client_measurement": client_measurement,"client_workplan": {workout_planid: '', weeks: '8'}, "startFrom": today, clientinfoid:  currentUser._id, client_mealplan: "client_mealplan1"});
                     
                     clientInfo.save((errClient => {
                       
