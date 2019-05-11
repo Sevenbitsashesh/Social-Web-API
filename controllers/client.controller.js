@@ -8,6 +8,8 @@ router.post('/myclients',getmyClients)
 router.post('/getclient',getClient)
 router.post('/getmydata', getMyData)
 router.post('/updateassessment', updateAssessment)
+router.post('/updategoal', updateGoal)
+router.post('/updateworkout', updateWorkout)
 module.exports = router;
 function getclientAll(req,res,next) {
     return clientService.getclientAll().then(clientItems => {
@@ -108,5 +110,49 @@ function updateAssessment(req, res, next) {
         res.json({message: "failed"});
     })
 }
-
-
+function updateGoal(req, res, next) {
+    const {id} = req.body;
+    
+    clientService.getMyClientById(id).then(clientData => {
+        if(clientData) {
+            clientService.updateGoal(req.body).then(updateData => {
+                
+                if(updateData.ok) {
+                    res.json({message: "success"});
+                }
+                else {
+                    res.json({message: "failed"});
+                }
+            })            
+        }
+        else {
+            res.json({message: "failed"});
+        }
+        
+    }).catch(error => {
+        res.json({message: "failed"});
+    })
+}
+function updateWorkout(req, res, next) {
+    const {id} = req.body;
+    
+    clientService.getMyClientById(id).then(clientData => {
+        if(clientData) {
+            clientService.updateWorkout(req.body).then(updateData => {
+                
+                if(updateData.ok) {
+                    res.json({message: "success"});
+                }
+                else {
+                    res.json({message: "failed"});
+                }
+            })            
+        }
+        else {
+            res.json({message: "failed"});
+        }
+        
+    }).catch(error => {
+        res.json({message: "failed"});
+    })
+}

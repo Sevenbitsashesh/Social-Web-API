@@ -12,12 +12,15 @@ module.exports = {
     getClient,
     getMyData,
     getMyClientById,
-    updateAssessment
+    updateAssessment,
+    updateGoal,
+    updateWorkout
 }
 async function getclientAll() {
     return Client.find();
 }
-async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, client_mealplan,workout_planid, weeks, dob, gender, clientinfoid},res) {
+// async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, client_mealplan,workout_planid, weeks, dob, gender, clientinfoid},res) {
+async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, dob, gender, clientinfoid},res) {
     const pass = Math.random().toString(32);
     
     let today = new Date();    
@@ -33,7 +36,10 @@ async function addClientUser({fname, lname, email, trainerid, client_goal, clien
                 if(!error) {
                     // console.log('New User Added!'+ user_name);
                     // res.json(u);
-                    const clientInfo = new Client({"trainerid": trainerid, "client_name": fname +' '+ lname, "email": email, "client_goal": client_goal, "client_level": client_level,"client_measurement": client_measurement, "client_workplan": {workout_planid: workout_planid, weeks: weeks}, "client_mealplan": client_mealplan, "startFrom": today, clientinfoid:  currentUser._id});
+
+                    // const clientInfo = new Client({"trainerid": trainerid, "client_name": fname +' '+ lname, "email": email, "client_goal": client_goal, "client_level": client_level,"client_measurement": client_measurement, "client_workplan": {workout_planid: workout_planid, weeks: weeks}, "client_mealplan": client_mealplan, "startFrom": today, clientinfoid:  currentUser._id});
+                    const clientInfo = new Client({"trainerid": trainerid, "client_name": fname +' '+ lname, "email": email, "client_goal": client_goal, "client_level": client_level,"client_measurement": client_measurement, "startFrom": today, clientinfoid:  currentUser._id, "client_mealplan": 'client_mealplan1'});
+                    
                     clientInfo.save((errClient => {
                       
                         if(!errClient) {
@@ -80,7 +86,16 @@ async function updateAssessment({assessModel, id}) {
     const updateAssess = Client.updateOne({_id: id},{$set :{client_measurement: assessModel}} ,{ upsert: false })
     return updateAssess;
 }
-
+async function updateGoal({clientgoal, id}) {
+    console.log(clientgoal, id);
+    const updateGoal = Client.updateOne({_id: id},{$set :{client_goal: clientgoal}} ,{ upsert: false })
+    return updateGoal;
+}
+async function updateWorkout({workoutid, id}) {
+    console.log(workoutid, id);
+    const updateWorkout = Client.updateOne({_id: id},{$set :{client_workplan: {workout_planid: workoutid, weeks: '8'}}} ,{ upsert: false })
+    return updateWorkout;
+}
 
 // Client Service
 async function getMyData(clientinfoid) {

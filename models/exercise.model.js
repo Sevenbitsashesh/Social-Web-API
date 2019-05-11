@@ -6,7 +6,7 @@ const exeSchema = new Schema({
     exe_name: {type: String, required: true},
     userid: { type: String, required: true },
     exe_pic: { type: String, required: false },
-    exe_type: { type: String, required: true },
+    // exe_type: { type: String, required: true },
     exe_desc: { type: String, required: false },
     exe_muscle: {type: String, required: true},
     sec_exe_muscle: {type: Array, required: true},
