@@ -21,8 +21,8 @@ async function getclientAll() {
 }
 // async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, client_mealplan,workout_planid, weeks, dob, gender, clientinfoid},res) {
 async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, dob, gender, clientinfoid},res) {
-    const pass = Math.random().toString(32).slice(11);
-    
+    // const pass = Math.random().toString(32).slice(11);
+    const pass = 'mypass123';
     let today = new Date();    
     const h = bcrypt.hashSync(pass, 10, (err) => {
         console.log(err);
