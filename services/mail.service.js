@@ -23,7 +23,7 @@ var mailgun = require("mailgun-js");
 
 
 async function sendMail({message, sender, recepeint}) {
-  var sendEmail = Mailjet.post('send', { url: 'in-v3.mailjet.com', version: 'v3.1', perform_api_call: false, port: '587' });
+  var sendEmail = Mailjet.post('send', { url: 'in-v3.mailjet.com', version: 'v3', perform_api_call: false, port: '587' });
   console.log(message, sender, recepeint)
       
         
