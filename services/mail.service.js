@@ -32,7 +32,7 @@ async function sendMail({message, sender, recepeint}) {
           FromName: 'PT_APP',
           Subject: 'NEW CLIENT DATA',
           'Text-part': message.message,
-          Recipients: [{'Email': rec}]
+          Recipients: {'Email': rec}
         };
      
         // })
