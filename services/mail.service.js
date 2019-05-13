@@ -23,16 +23,17 @@ var mailgun = require("mailgun-js");
 
 
 async function sendMail({message, sender, recepeint}) {
-  var sendEmail = Mailjet.post('send', { url: 'in-v3.mailjet.com', version: 'v3', perform_api_call: false, port: '587' });
+  var sendEmail = Mailjet.post('send');
   console.log(message, sender, recepeint)
       
-        // const rec = recepeint.rece
+        const rec = recepeint.recepeint
+        // console.log(rec)
         const data = {
           FromEmail: 'patel.abhishek@tristonsoft.com',
           FromName: 'PT_APP',
           Subject: 'NEW CLIENT DATA',
           'Text-part': message.message,
-          Recipients: [{'Email': 'recepeint.'}]
+          Recipients: [{'Email': rec}]
         };
      
         // })
