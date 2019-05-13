@@ -38,7 +38,7 @@ async function sendMail({message, sender, recepeint}) {
         // })
         sendEmail.request(data)
         .then(handlePostResponse => {
-          console.log(handlePostResponse)
+          console.log('response'+handlePostResponse)
         })
         .catch(handleError => {
           console.log('error'+handleError);
