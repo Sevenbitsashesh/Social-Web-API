@@ -20,15 +20,17 @@ async function getclientAll() {
     return Client.find();
 }
 // async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, client_mealplan,workout_planid, weeks, dob, gender, clientinfoid},res) {
-async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, dob, gender, clientinfoid},res) {
+async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, dob, gender, clientinfoid, password},res) {
     // const pass = Math.random().toString(32).slice(11);
-    const pass = 'mypass123';
+    // const pass = 'mypass123';
+    const pass = password;
     let today = new Date();    
     const h = bcrypt.hashSync(pass, 10, (err) => {
         console.log(err);
     })
+
     console.log(pass);
-    const u = new User({user_name: email, email, hash: h, fname, lname, role: "Client", password: pass});                        
+    const u = new User({user_name: email, email, hash: h, fname, lname, role: "Client"});                        
     u.save((err) => {
         const currentUser = new UserInfo({"userid": u._id,"user_name": email,"website": "", "profile_pic": "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt=media&token=55b2f2e5-aec4-4819-9a10-ae9315a4cb1d", "bio": "Hi! I am using SWA.", "interests": "", "cover_image": "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profile%2F9aaded4a-e6ac-407d-9523.jpg?alt=media&token=4ce6ecdc-bd12-45b5-b610-851c4f00e928", "mobile": "", "dob": dob,"gender": gender, "address": "", "isVerified": false});    
         if(!err) {

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const clientService = require('../services/client.service');
 const userService = require('../services/user.service');
+const mailService = require('../services/mail.service');
 router.post('/addclient',addclient);
 router.get('/', getclientAll)
 router.post('/myclients',getmyClients)
@@ -21,7 +22,7 @@ function addclient(req, res, next) {
     
     //  userModel = {fname: data.fname, lname: data.lname, email: data.email, hash: randomstring, user_name: data.email, role: "Client" };
 console.log(req.body);
-    
+  
     userService.getUserByEmail(req.body).then(u => {
         // console.log(u);
         if(u.length === 0) {
