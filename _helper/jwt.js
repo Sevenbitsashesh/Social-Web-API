@@ -9,6 +9,7 @@ function jwt() {
     
     const secret = config.secret;    
     
+    
     return (expressJwt({ secret,  credentialsRequired: true, getToken: function from(req)  {
       
         if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {

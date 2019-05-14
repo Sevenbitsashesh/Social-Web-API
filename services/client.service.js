@@ -21,7 +21,7 @@ async function getclientAll() {
 }
 // async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, client_mealplan,workout_planid, weeks, dob, gender, clientinfoid},res) {
 async function addClientUser({fname, lname, email, trainerid, client_goal, client_level, client_measurement, dob, gender, clientinfoid, password},res) {
-    // const pass = Math.random().toString(32).slice(11);
+    // const pass = Math.random().toString(32).slice(2);
     // const pass = 'mypass123';
     const pass = password;
     let today = new Date();    
