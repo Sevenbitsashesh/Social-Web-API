@@ -25,6 +25,7 @@ app.use('/meal',require('./controllers/meal.controller'));
 app.use('/client',require('./controllers/client.controller'));
 app.use('/mail',require('./controllers/mail.controller'));
 app.use('/sms',require('./controllers/sms.controller'));
+app.use('/firebasesms',require('./controllers/firebasesms.controller'));
 
 
 
